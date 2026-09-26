@@ -106,8 +106,8 @@ export const en: Dict = {
   contact: {
     eyebrow: "Contact",
     title: "Tell us what you want to build.",
-    sub: "Write to codedynamic@gmail.com or leave a message (demo: not sent anywhere in v1).",
-    email: "codedynamic@gmail.com",
+    sub: "Write to codedynamicdev@gmail.com or leave a message (demo: not sent anywhere in v1).",
+    email: "codedynamicdev@gmail.com",
     form: {
       name: "Name",
       email: "Email",

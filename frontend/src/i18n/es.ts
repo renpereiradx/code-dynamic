@@ -104,8 +104,8 @@ export const es = {
   contact: {
     eyebrow: "Contacto",
     title: "Cuéntanos qué quieres construir.",
-    sub: "Escríbenos a codedynamic@gmail.com o deja tu mensaje (demo: no se envía a ningún servidor en v1).",
-    email: "codedynamic@gmail.com",
+    sub: "Escríbenos a codedynamicdev@gmail.com o deja tu mensaje (demo: no se envía a ningún servidor en v1).",
+    email: "codedynamicdev@gmail.com",
     form: {
       name: "Nombre",
       email: "Email",
