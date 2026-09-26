@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// Envío vía backend Go (/api/contact) con rate limit por IP.
-// PUBLIC_CONTACT_API_URL se fija en build (ej. https://code-dynamic-api.onrender.com).
-// Fallback: FormSubmit directo (requiere activar el buzón una vez vía email
-// de confirmación a codedynamicdev@gmail.com).
-const API_BASE = (import.meta.env as unknown as Record<string, string | undefined>)
-  .PUBLIC_CONTACT_API_URL;
-const ENDPOINT = API_BASE
-  ? `${API_BASE.replace(/\/+$/, "")}/api/contact`
-  : "https://formsubmit.co/ajax/codedynamicdev@gmail.com";
+// Ruta de envío:
+//   1. /api/contact (Pages Function en nuestro dominio: rate limit + Turnstile + Resend).
+//      Requiere builds conectados a Git; con deploy directo manual devuelve 404.
+//   2. Fallback temporal: FormSubmit directo (quitar cuando la Function esté verificada).
+const BACKEND_URL = "/api/contact";
+const FALLBACK_URL = "https://formsubmit.co/ajax/codedynamicdev@gmail.com";
+
+const SITEKEY = (import.meta.env as unknown as Record<string, string | undefined>)
+  .PUBLIC_TURNSTILE_SITEKEY;
 
 type Labels = {
   name: string;
@@ -23,10 +23,64 @@ type Labels = {
 
 type Status = "idle" | "sending" | "ok" | "error" | "sendError";
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        el: HTMLElement,
+        opts: {
+          sitekey: string;
+          callback?: (token: string) => void;
+          "expired-callback"?: () => void;
+          "error-callback"?: () => void;
+        }
+      ) => void;
+    };
+  }
+}
+
+function TurnstileWidget({ onToken }: { onToken: (t: string) => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!SITEKEY) return;
+    const render = () => {
+      if (!window.turnstile || !ref.current || ref.current.dataset.done) return;
+      ref.current.dataset.done = "1";
+      window.turnstile.render(ref.current, {
+        sitekey: SITEKEY,
+        callback: onToken,
+        "expired-callback": () => onToken(""),
+        "error-callback": () => onToken(""),
+      });
+    };
+    if (window.turnstile) {
+      render();
+    } else {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true;
+      s.defer = true;
+      s.onload = render;
+      document.head.appendChild(s);
+    }
+  }, [onToken]);
+  if (!SITEKEY) return null;
+  return <div ref={ref} className="mt-1" />;
+}
+
+async function postJSON(url: string, payload: Record<string, string>): Promise<Response> {
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
 export default function ContactForm({ labels }: { labels: Labels }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [token, setToken] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: React.FormEvent) {
@@ -40,24 +94,48 @@ export default function ContactForm({ labels }: { labels: Labels }) {
       return;
     }
     setStatus("sending");
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      _honey: "",
+      token,
+    };
+    // 1) Backend propio (rate limit + Turnstile + Resend).
     try {
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          message: message.trim(),
-          _subject: `Nuevo contacto web: ${name.trim()}`,
-          _template: "table",
-          _honey: "",
-        }),
+      const res = await postJSON(BACKEND_URL, payload);
+      if (res.ok) {
+        setStatus("ok");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setToken("");
+        return;
+      }
+      // 404 = Function aún no desplegada (falta conectar Git) → fallback.
+      // 400/403/429/5xx = respuesta real del backend, no reintentar por otro lado.
+      if (res.status !== 404) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        void data;
+        setStatus(res.status === 400 ? "error" : "sendError");
+        return;
+      }
+    } catch {
+      // Sin red / backend caído → fallback.
+    }
+    // 2) Fallback temporal FormSubmit.
+    try {
+      const res = await postJSON(FALLBACK_URL, {
+        ...payload,
+        _subject: `Nuevo contacto web: ${name.trim()}`,
+        _template: "table",
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("ok");
       setName("");
       setEmail("");
       setMessage("");
+      setToken("");
     } catch {
       setStatus("sendError");
     }
@@ -120,6 +198,7 @@ export default function ContactForm({ labels }: { labels: Labels }) {
         className="hidden"
         defaultValue=""
       />
+      <TurnstileWidget onToken={setToken} />
       {status === "error" && (
         <p role="alert" className="text-sm font-medium text-[#FF9F0A]">
           {labels.error}
