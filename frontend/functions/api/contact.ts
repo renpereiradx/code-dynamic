@@ -142,24 +142,27 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     }
   }
 
-  if (env.RESEND_API_KEY) {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: env.RESEND_FROM ?? "Code Dynamic <onboarding@resend.dev>",
-        to: [to],
-        reply_to: email,
-        subject: `Nuevo contacto web: ${name}`,
-        text: `Nombre: ${name}\nEmail: ${email}\n\n${message}\n`,
-      }),
-    });
-    if (!res.ok) {
-      return json({ error: "no se pudo enviar, inténtalo más tarde" }, 502);
-    }
+  // Sin clave de Resend el envío es imposible: 501 para que el
+  // frontend use su fallback temporal (FormSubmit) en vez de éxito falso.
+  if (!env.RESEND_API_KEY) {
+    return json({ error: "email no configurado" }, 501);
+  }
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: env.RESEND_FROM ?? "Code Dynamic <onboarding@resend.dev>",
+      to: [to],
+      reply_to: email,
+      subject: `Nuevo contacto web: ${name}`,
+      text: `Nombre: ${name}\nEmail: ${email}\n\n${message}\n`,
+    }),
+  });
+  if (!res.ok) {
+    return json({ error: "no se pudo enviar, inténtalo más tarde" }, 502);
   }
 
   return json({ ok: true });

@@ -112,9 +112,9 @@ export default function ContactForm({ labels }: { labels: Labels }) {
         setToken("");
         return;
       }
-      // 404 = Function aún no desplegada (falta conectar Git) → fallback.
-      // 400/403/429/5xx = respuesta real del backend, no reintentar por otro lado.
-      if (res.status !== 404) {
+      // 404 = Function aún no desplegada; 501 = Function sin email configurado.
+      // En ambos casos → fallback. 400/403/429/502 = respuesta real, no reintentar.
+      if (res.status !== 404 && res.status !== 501) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null;
         void data;
         setStatus(res.status === 400 ? "error" : "sendError");
