@@ -48,6 +48,7 @@ function TurnstileWidget({ onToken }: { onToken: (t: string) => void }) {
       ref.current.dataset.done = "1";
       window.turnstile.render(ref.current, {
         sitekey: SITEKEY,
+        theme: "dark",
         callback: onToken,
         "expired-callback": () => onToken(""),
         "error-callback": () => onToken(""),
@@ -81,15 +82,21 @@ export default function ContactForm({ labels }: { labels: Labels }) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
+  const [tried, setTried] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
+
+  const nameBad = tried && name.trim().length < 2;
+  const emailBad = tried && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const messageBad = tried && message.trim().length < 10;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const valid =
-      name.trim().length >= 2 &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) &&
-      message.trim().length >= 10;
-    if (!valid) {
+    setTried(true);
+    const bad =
+      name.trim().length < 2 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
+      message.trim().length < 10;
+    if (bad) {
       setStatus("error");
       return;
     }
@@ -151,10 +158,11 @@ export default function ContactForm({ labels }: { labels: Labels }) {
           id="cd-name"
           name="name"
           autoComplete="name"
+          aria-invalid={nameBad}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full rounded-xl border bg-transparent px-4 py-3 text-[15px] outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-          style={{ borderColor: "var(--line)" }}
+          style={{ borderColor: nameBad ? "#FF453A" : "var(--line)" }}
           placeholder="Ada Lovelace"
         />
       </div>
@@ -167,10 +175,11 @@ export default function ContactForm({ labels }: { labels: Labels }) {
           name="email"
           type="email"
           autoComplete="email"
+          aria-invalid={emailBad}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full rounded-xl border bg-transparent px-4 py-3 text-[15px] outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-          style={{ borderColor: "var(--line)" }}
+          style={{ borderColor: emailBad ? "#FF453A" : "var(--line)" }}
           placeholder="ada@empresa.com"
         />
       </div>
@@ -182,10 +191,11 @@ export default function ContactForm({ labels }: { labels: Labels }) {
           id="cd-msg"
           name="message"
           rows={4}
+          aria-invalid={messageBad}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full resize-y rounded-xl border bg-transparent px-4 py-3 text-[15px] outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-          style={{ borderColor: "var(--line)" }}
+          style={{ borderColor: messageBad ? "#FF453A" : "var(--line)" }}
         />
       </div>
       {/* Honeypot anti-spam: invisible para humanos */}

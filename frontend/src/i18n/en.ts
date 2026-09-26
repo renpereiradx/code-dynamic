@@ -115,7 +115,7 @@ export const en: Dict = {
       send: "Send message",
       sending: "Sending…",
       ok: "Received! We'll reply within 24 h.",
-      error: "Please check the highlighted fields.",
+      error: "Check the red fields: name (2+ chars), valid email, message (10+ chars).",
       sendError: "Couldn't send. Try again or write to us directly.",
     },
   },

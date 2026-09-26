@@ -113,7 +113,7 @@ export const es = {
       send: "Enviar mensaje",
       sending: "Enviando…",
       ok: "¡Recibido! Te escribimos en menos de 24 h.",
-      error: "Revisa los campos marcados.",
+      error: "Revisa los campos en rojo: nombre (2+ letras), email válido y mensaje (10+ caracteres).",
       sendError: "No se pudo enviar. Inténtalo de nuevo o escríbenos directo al email.",
     },
   },
