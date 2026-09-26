@@ -22,6 +22,11 @@ Fecha: 2026-09-26. Stack: Git + Astro + React + TypeScript + Tailwind. i18n ES/E
 - Paso 4: SEO/fuentes — `@astrojs/sitemap` (`site` + `sitemap-index.xml`),
   `robots.txt`, Inter + Inter Tight variables self-hosted (Fontsource).
   Pendiente optimizar: importar solo subset latin si el peso crece.
+- Paso 5 (anti-spam): backend Go en repo (rate limit, SMTP, `render.yaml` —
+  aparcado: Render/Koyeb exigen tarjeta) + **Pages Function `/api/contact` ACTIVA**
+  (KV `code-dynamic-rate`, Turnstile server-side, Resend). Formulario conmuta a
+  mismo-origen con fallback FormSubmit hasta verificación total.
+  Pendiente: quitar fallback tras confirmar 1 envío real de punta a punta.
 
 ## 1. Fuentes de diseño aplicadas
 
