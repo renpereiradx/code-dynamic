@@ -106,7 +106,7 @@ export const en: Dict = {
   contact: {
     eyebrow: "Contact",
     title: "Tell us what you want to build.",
-    sub: "Write to codedynamicdev@gmail.com or leave a message (demo: not sent anywhere in v1).",
+    sub: "Write to codedynamicdev@gmail.com or leave a message and we'll reply within 24 h.",
     email: "codedynamicdev@gmail.com",
     form: {
       name: "Name",
@@ -114,8 +114,9 @@ export const en: Dict = {
       message: "Tell us about the project…",
       send: "Send message",
       sending: "Sending…",
-      ok: "Received! We'll reply within 24 h. (local demo)",
+      ok: "Received! We'll reply within 24 h.",
       error: "Please check the highlighted fields.",
+      sendError: "Couldn't send. Try again or write to us directly.",
     },
   },
   footer: {

@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+// Envío real vía FormSubmit (gratis, sin backend propio).
+// El primer envío requiere activar el buzón: FormSubmit manda un email
+// de confirmación a codedynamicdev@gmail.com — hay que abrirlo y clicar
+// "Activate" una sola vez. A partir de ahí, todo mensaje llega directo.
+const ENDPOINT = "https://formsubmit.co/ajax/codedynamicdev@gmail.com";
+
 type Labels = {
   name: string;
   email: string;
@@ -8,15 +14,18 @@ type Labels = {
   sending: string;
   ok: string;
   error: string;
+  sendError: string;
 };
+
+type Status = "idle" | "sending" | "ok" | "error" | "sendError";
 
 export default function ContactForm({ labels }: { labels: Labels }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const valid =
       name.trim().length >= 2 &&
@@ -27,11 +36,28 @@ export default function ContactForm({ labels }: { labels: Labels }) {
       return;
     }
     setStatus("sending");
-    // v1: mock local, sin backend. En v2 se conecta a backend Go.
-    window.setTimeout(() => setStatus("ok"), 700);
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+          _subject: `Nuevo contacto web: ${name.trim()}`,
+          _template: "table",
+          _honey: "",
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStatus("ok");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
+      setStatus("sendError");
+    }
   }
-
-  const invalid = status === "error";
 
   return (
     <form onSubmit={onSubmit} noValidate className="surface grid gap-4 rounded-3xl p-6 sm:p-8">
@@ -80,9 +106,24 @@ export default function ContactForm({ labels }: { labels: Labels }) {
           style={{ borderColor: "var(--line)" }}
         />
       </div>
+      {/* Honeypot anti-spam: invisible para humanos */}
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+        defaultValue=""
+      />
       {status === "error" && (
         <p role="alert" className="text-sm font-medium text-[#FF9F0A]">
           {labels.error}
+        </p>
+      )}
+      {status === "sendError" && (
+        <p role="alert" className="text-sm font-medium text-[#FF9F0A]">
+          {labels.sendError}
         </p>
       )}
       {status === "ok" && (

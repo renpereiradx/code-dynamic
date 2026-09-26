@@ -104,7 +104,7 @@ export const es = {
   contact: {
     eyebrow: "Contacto",
     title: "Cuéntanos qué quieres construir.",
-    sub: "Escríbenos a codedynamicdev@gmail.com o deja tu mensaje (demo: no se envía a ningún servidor en v1).",
+    sub: "Escríbenos a codedynamicdev@gmail.com o deja tu mensaje y te respondemos en menos de 24 h.",
     email: "codedynamicdev@gmail.com",
     form: {
       name: "Nombre",
@@ -112,8 +112,9 @@ export const es = {
       message: "Cuéntanos del proyecto…",
       send: "Enviar mensaje",
       sending: "Enviando…",
-      ok: "¡Recibido! Te escribimos en menos de 24 h. (demo local)",
+      ok: "¡Recibido! Te escribimos en menos de 24 h.",
       error: "Revisa los campos marcados.",
+      sendError: "No se pudo enviar. Inténtalo de nuevo o escríbenos directo al email.",
     },
   },
   footer: {
