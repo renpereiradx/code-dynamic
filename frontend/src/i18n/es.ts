@@ -27,7 +27,7 @@ export const es = {
   services: {
     eyebrow: "Servicios",
     title: "Todo lo que tu producto necesita.",
-    sub: "Seis capacidades, un solo equipo. Contenido de demostración: lo afinamos con tus textos reales.",
+    sub: "Seis capacidades, un solo equipo.",
     items: [
       {
         title: "Aplicaciones web",
@@ -121,7 +121,7 @@ export const es = {
     tagline: "Estudio de desarrollo de software. Diseño Apple, amabilidad Google.",
     sections: "Secciones",
     contactTitle: "Contacto",
-    demo: "Sitio v1 de demostración · ES/EN · Dark-first",
+    demo: "Hecho con Astro, React y TypeScript",
     rights: "© 2026 Code Dynamic. Todos los derechos reservados.",
   },
 };

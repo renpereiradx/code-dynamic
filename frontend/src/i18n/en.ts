@@ -29,7 +29,7 @@ export const en: Dict = {
   services: {
     eyebrow: "Services",
     title: "Everything your product needs.",
-    sub: "Six capabilities, one team. Demo content — we'll refine it with your real copy.",
+    sub: "Six capabilities, one team.",
     items: [
       {
         title: "Web applications",
@@ -123,7 +123,7 @@ export const en: Dict = {
     tagline: "Software development studio. Apple design, Google friendliness.",
     sections: "Sections",
     contactTitle: "Contact",
-    demo: "v1 demo site · ES/EN · Dark-first",
+    demo: "Built with Astro, React & TypeScript",
     rights: "© 2026 Code Dynamic. All rights reserved.",
   },
 };
