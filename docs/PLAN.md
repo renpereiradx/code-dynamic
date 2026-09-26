@@ -8,7 +8,17 @@ Fecha: 2026-09-26. Stack: Git + Astro + React + TypeScript + Tailwind. i18n ES/E
 - Servicios v1: desarrollo general + IA/automatización.
 - Visual: Apple minimal + acento Google, dark-first, logo temporal tipográfico/SVG.
 - Estructura: monorepo (`frontend/` + `backend/` stub Go).
-- Contacto v1: simple (email + redes), contenido de relleno permitido.
+- Contacto v1: simple, solo email real `codedynamic@gmail.com` (formulario mock local).
+- Redes sociales: ocultas hasta tener URLs reales.
+- Casos/Testimonios: ocultos hasta tener contenido real (textos demo conservados en i18n).
+- Dominio propio: pendiente (se sigue en `code-dynamic.pages.dev`).
+
+## 0.1 Historial de pasos
+
+- Paso 1: commit inicial (`feat: website v1…`).
+- Paso 2: deploy Cloudflare Pages gratis → https://code-dynamic.pages.dev
+  (estático, `_headers`, sin adapter SSR).
+- Paso 3: contenido real parcial (email, ocultar redes/casos/testimonios).
 
 ## 1. Fuentes de diseño aplicadas
 

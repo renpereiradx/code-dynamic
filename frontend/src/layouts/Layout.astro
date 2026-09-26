@@ -63,7 +63,6 @@ const base = import.meta.env.BASE_URL ?? "/";
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#servicios`}>{dict.nav.services}</a>
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#proceso`}>{dict.nav.process}</a>
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#stack`}>{dict.nav.stack}</a>
-          <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#casos`}>{dict.nav.work}</a>
         </div>
 
         <div class="flex items-center gap-2.5">
@@ -129,11 +128,6 @@ const base = import.meta.env.BASE_URL ?? "/";
           <p class="text-[13px] font-semibold uppercase tracking-widest" style="color: var(--muted)">{dict.footer.contactTitle}</p>
           <ul class="mt-4 space-y-2.5 text-[14.5px]">
             <li><a class="hover:underline" href={`mailto:${dict.contact.email}`}>{dict.contact.email}</a></li>
-            <li class="flex gap-4" style="color: var(--muted)">
-              <a class="hover:text-[var(--text)] hover:underline" href="https://github.com/" rel="noopener">GitHub</a>
-              <a class="hover:text-[var(--text)] hover:underline" href="https://linkedin.com/" rel="noopener">LinkedIn</a>
-              <a class="hover:text-[var(--text)] hover:underline" href="https://x.com/" rel="noopener">X</a>
-            </li>
           </ul>
         </div>
       </div>
