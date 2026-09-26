@@ -19,6 +19,9 @@ Fecha: 2026-09-26. Stack: Git + Astro + React + TypeScript + Tailwind. i18n ES/E
 - Paso 2: deploy Cloudflare Pages gratis → https://code-dynamic.pages.dev
   (estático, `_headers`, sin adapter SSR).
 - Paso 3: contenido real parcial (email, ocultar redes/casos/testimonios).
+- Paso 4: SEO/fuentes — `@astrojs/sitemap` (`site` + `sitemap-index.xml`),
+  `robots.txt`, Inter + Inter Tight variables self-hosted (Fontsource).
+  Pendiente optimizar: importar solo subset latin si el peso crece.
 
 ## 1. Fuentes de diseño aplicadas
 

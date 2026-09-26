@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://code-dynamic.pages.dev/sitemap-index.xml
