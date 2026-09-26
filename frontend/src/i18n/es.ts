@@ -1,0 +1,128 @@
+export const es = {
+  lang: "es" as const,
+  nav: {
+    services: "Servicios",
+    process: "Proceso",
+    stack: "Stack",
+    work: "Casos",
+    contact: "Contacto",
+    cta: "Hablemos",
+  },
+  hero: {
+    badge: "Nuevo · IA aplicada a producto",
+    titleA: "Software que se siente",
+    titleAccent: "tan bien como se ve.",
+    sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas con IA. Minimalismo Apple, precisión de ingeniería y un toque amable de Google.",
+    primary: "Iniciar proyecto",
+    secondary: "Ver servicios",
+    note: "Respuesta en < 24 h · Sin compromiso",
+    stats: [
+      { value: "10+", label: "años construyendo software" },
+      { value: "40+", label: "productos lanzados" },
+      { value: "<200ms", label: "interacciones, por defecto" },
+    ],
+    techLabel: "Stack con el que trabajamos",
+  },
+  logos: ["Astro", "React", "TypeScript", "Tailwind", "Node.js", "Go", "PostgreSQL", "Docker"],
+  services: {
+    eyebrow: "Servicios",
+    title: "Todo lo que tu producto necesita.",
+    sub: "Seis capacidades, un solo equipo. Contenido de demostración: lo afinamos con tus textos reales.",
+    items: [
+      {
+        title: "Aplicaciones web",
+        desc: "Plataformas rápidas con Astro + React. SEO, i18n y Core Web Vitals en verde desde el día uno.",
+        tag: "Web",
+        span: "large",
+      },
+      {
+        title: "Apps móviles",
+        desc: "Experiencias nativas y multiplataforma con rendimiento de 60 fps.",
+        tag: "Móvil",
+        span: "medium",
+      },
+      {
+        title: "APIs & Cloud",
+        desc: "Backends en Go, infra contenerizada y despliegues reproducibles.",
+        tag: "Backend",
+        span: "medium",
+      },
+      {
+        title: "IA & Automatización",
+        desc: "Asistentes, RAG, pipelines y agentes que ahorran horas reales de operación.",
+        tag: "IA",
+        span: "small",
+      },
+      {
+        title: "UI / UX",
+        desc: "Sistemas de diseño, prototipos y motion con propósito.",
+        tag: "Diseño",
+        span: "small",
+      },
+      {
+        title: "Soporte & Evolución",
+        desc: "Mantenimiento, observabilidad y mejora continua sin drama.",
+        tag: "Care",
+        span: "small",
+      },
+    ],
+  },
+  process: {
+    eyebrow: "Proceso",
+    title: "Simple, predecible, sin humo.",
+    steps: [
+      { n: "01", title: "Descubrir", desc: "Una semana para entender el problema, usuarios y métricas de éxito." },
+      { n: "02", title: "Diseñar", desc: "Prototipo navegable y sistema de diseño antes de escribir código serio." },
+      { n: "03", title: "Construir", desc: "Sprints semanales con demos reales y releases continuos." },
+      { n: "04", title: "Escalar", desc: "Medimos, optimizamos y dejamos todo documentado para tu equipo." },
+    ],
+  },
+  stack: {
+    eyebrow: "Stack",
+    title: "Moderno donde importa, aburrido donde conviene.",
+    items: ["Astro", "React", "TypeScript", "Tailwind CSS", "Go", "PostgreSQL", "Docker", "Cloudflare"],
+  },
+  work: {
+    eyebrow: "Casos",
+    title: "Resultados antes que promesas.",
+    note: "Casos de demostración — los reemplazamos por tus proyectos reales.",
+    items: [
+      { title: "Panel SaaS B2B", desc: "Migración a Astro Islands: LCP −45 %, INP < 150 ms.", tag: "SaaS" },
+      { title: "App de reservas", desc: "Reserva en 3 toques, +22 % conversión en móvil.", tag: "Móvil" },
+      { title: "Asistente con IA", desc: "RAG sobre docs internas, −30 h/semana de soporte.", tag: "IA" },
+    ],
+  },
+  quotes: {
+    eyebrow: "Opiniones",
+    title: "Lo que dicen cuando lanzamos.",
+    note: "Testimonios de demostración.",
+    items: [
+      { quote: "Entregaron en seis semanas lo que otros estimaron en seis meses.", author: "CEO, SaaS ficticio" },
+      { quote: "El sitio carga instantáneo y se siente premium en cada detalle.", author: "Fundadora, startup ficticia" },
+    ],
+  },
+  contact: {
+    eyebrow: "Contacto",
+    title: "Cuéntanos qué quieres construir.",
+    sub: "Escríbenos a hola@codedynamic.dev o deja tu mensaje (demo: no se envía a ningún servidor en v1).",
+    email: "hola@codedynamic.dev",
+    form: {
+      name: "Nombre",
+      email: "Email",
+      message: "Cuéntanos del proyecto…",
+      send: "Enviar mensaje",
+      sending: "Enviando…",
+      ok: "¡Recibido! Te escribimos en menos de 24 h. (demo local)",
+      error: "Revisa los campos marcados.",
+    },
+  },
+  footer: {
+    tagline: "Estudio de desarrollo de software. Diseño Apple, amabilidad Google.",
+    sections: "Secciones",
+    contactTitle: "Contacto",
+    demo: "Sitio v1 de demostración · ES/EN · Dark-first",
+    rights: "© 2026 Code Dynamic. Todos los derechos reservados.",
+  },
+};
+
+export type Dict = typeof es;

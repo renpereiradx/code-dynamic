@@ -1,0 +1,35 @@
+---
+import type { Dict } from "../i18n/es";
+
+const { dict } = Astro.props as { dict: Dict };
+
+function spanClass(span: string) {
+  if (span === "large") return "sm:col-span-4";
+  if (span === "medium") return "sm:col-span-2";
+  return "sm:col-span-2";
+}
+---
+
+<section id="servicios" class="mx-auto w-full max-w-6xl scroll-mt-20 px-5 pt-24 sm:px-8">
+  <div class="reveal max-w-2xl">
+    <p class="font-mono text-[12.5px] uppercase tracking-[0.18em]" style="color: var(--accent)">_{dict.services.eyebrow}</p>
+    <h2 class="font-display mt-3 text-[clamp(1.9rem,1rem+3.4vw,3rem)] font-bold leading-[1.05]">{dict.services.title}</h2>
+    <p class="mt-4 text-[16.5px] leading-relaxed" style="color: var(--muted)">{dict.services.sub}</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-6">
+    {dict.services.items.map((s, i) => (
+      <article
+        class={`reveal surface bento-card cursor-pointer rounded-3xl p-6 sm:p-7 ${spanClass(s.span)}`}
+        style={`--d: ${i * 70}ms`}
+      >
+        <span
+          class="inline-block rounded-full px-3 py-1 font-mono text-[12px] font-medium"
+          style="background: var(--surface-2); color: var(--accent)"
+        >{s.tag}</span>
+        <h3 class="font-display mt-4 text-[20px] font-bold">{s.title}</h3>
+        <p class="mt-2 text-[14.5px] leading-relaxed" style="color: var(--muted)">{s.desc}</p>
+      </article>
+    ))}
+  </div>
+</section>

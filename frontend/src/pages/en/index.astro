@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import ProcessStack from "../../components/ProcessStack.astro";
+import WorkContact from "../../components/WorkContact.astro";
+import { en } from "../../i18n/en";
+import { es } from "../../i18n/es";
+
+// Layout espera Dict (forma idéntica); `en` la cumple vía `Dict`.
+const dict = en as unknown as typeof es;
+---
+
+<Layout
+  lang="en"
+  dict={dict}
+  title="Code Dynamic — Software development studio"
+  description="Code Dynamic designs and builds web apps, mobile apps and AI-powered systems. Apple-grade minimalism, precise engineering, friendly touch."
+>
+  <Hero dict={dict} lang="en" />
+  <Services dict={dict} />
+  <ProcessStack dict={dict} />
+  <WorkContact dict={dict} />
+</Layout>

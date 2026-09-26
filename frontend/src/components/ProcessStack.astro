@@ -1,0 +1,36 @@
+---
+import type { Dict } from "../i18n/es";
+
+const { dict } = Astro.props as { dict: Dict };
+---
+
+<section id="proceso" class="mx-auto w-full max-w-6xl scroll-mt-20 px-5 pt-24 sm:px-8">
+  <div class="reveal max-w-2xl">
+    <p class="font-mono text-[12.5px] uppercase tracking-[0.18em]" style="color: var(--accent)">_{dict.process.eyebrow}</p>
+    <h2 class="font-display mt-3 text-[clamp(1.9rem,1rem+3.4vw,3rem)] font-bold leading-[1.05]">{dict.process.title}</h2>
+  </div>
+  <ol class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {dict.process.steps.map((st, i) => (
+      <li class="reveal surface rounded-3xl p-6" style={`--d: ${i * 80}ms`}>
+        <span class="font-display text-[15px] font-bold" style="color: var(--accent)">{st.n}</span>
+        <h3 class="font-display mt-3 text-[18px] font-bold">{st.title}</h3>
+        <p class="mt-2 text-[14.5px] leading-relaxed" style="color: var(--muted)">{st.desc}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section id="stack" class="mx-auto w-full max-w-6xl scroll-mt-20 px-5 pt-24 sm:px-8">
+  <div class="reveal surface rounded-3xl px-6 py-8 sm:px-10 sm:py-10">
+    <p class="font-mono text-[12.5px] uppercase tracking-[0.18em]" style="color: var(--accent)">_{dict.stack.eyebrow}</p>
+    <h2 class="font-display mt-3 max-w-xl text-[clamp(1.5rem,0.8rem+2.6vw,2.2rem)] font-bold leading-tight">{dict.stack.title}</h2>
+    <ul class="mt-6 flex flex-wrap gap-2.5">
+      {dict.stack.items.map((t) => (
+        <li
+          class="rounded-full border px-4 py-2 font-mono text-[13px]"
+          style="border-color: var(--line); background: var(--surface-2); color: var(--text)"
+        >{t}</li>
+      ))}
+    </ul>
+  </div>
+</section>

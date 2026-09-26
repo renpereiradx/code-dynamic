@@ -1,0 +1,60 @@
+---
+import type { Dict } from "../i18n/es";
+
+const { dict, lang } = Astro.props as { dict: Dict; lang: "es" | "en" };
+const contactHref = `/${lang}/#contacto`;
+const servicesHref = `/${lang}/#servicios`;
+---
+
+<section class="mx-auto w-full max-w-6xl px-5 pt-16 sm:px-8 sm:pt-24">
+  <div class="reveal mx-auto max-w-3xl text-center">
+    <a
+      href={servicesHref}
+      class="surface inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13.5px] font-medium"
+      style="color: var(--muted)"
+    >
+      <span class="inline-block h-2 w-2 rounded-full" style="background: var(--accent)" aria-hidden="true"></span>
+      {dict.hero.badge}
+    </a>
+    <h1 class="font-display hero-title mt-6 font-extrabold tracking-tight">
+      {dict.hero.titleA}
+      <br />
+      <span style="color: var(--accent)">{dict.hero.titleAccent}</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed" style="color: var(--muted)">
+      {dict.hero.sub}
+    </p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a
+        href={contactHref}
+        class="cursor-pointer w-full rounded-full px-7 py-3.5 text-[15.5px] font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[.97] sm:w-auto"
+        style="background: var(--accent)"
+      >{dict.hero.primary}</a>
+      <a
+        href={servicesHref}
+        class="surface cursor-pointer w-full rounded-full px-7 py-3.5 text-[15.5px] font-semibold transition-transform hover:scale-[1.03] active:scale-[.97] sm:w-auto"
+      >{dict.hero.secondary}</a>
+    </div>
+    <p class="mt-4 font-mono text-[12.5px]" style="color: var(--muted)">{dict.hero.note}</p>
+  </div>
+
+  <dl class="reveal mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-2xl sm:grid-cols-3" style="--d: 90ms; background: var(--line); border: 1px solid var(--line)" >
+    {dict.hero.stats.map((s) => (
+      <div class="px-6 py-5 text-center" style="background: var(--surface)">
+        <dt class="order-2 mt-1 block text-[13.5px]" style="color: var(--muted)">{s.label}</dt>
+        <dd class="font-display order-1 text-[26px] font-bold">{s.value}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <div class="reveal mt-12 overflow-hidden" style="--d: 160ms" aria-label={dict.hero.techLabel}>
+    <p class="text-center font-mono text-[12px] uppercase tracking-[0.18em]" style="color: var(--muted)">{dict.hero.techLabel}</p>
+    <div class="relative mt-4" style="mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent)">
+      <div class="marquee-track flex w-max gap-3 pr-3">
+        {[...dict.logos, ...dict.logos].map((t) => (
+          <span class="surface whitespace-nowrap rounded-full px-5 py-2 font-mono text-[13px]" style="color: var(--muted)" aria-hidden="true">{t}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

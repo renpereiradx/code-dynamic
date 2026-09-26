@@ -1,0 +1,22 @@
+# Node / Astro
+node_modules/
+frontend/dist/
+frontend/.astro/
+*.log
+
+# Go / backend (futuro)
+backend/bin/
+*.exe
+*.test
+*.out
+
+# OS / editores
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Env
+.env
+.env.*
+!.env.example

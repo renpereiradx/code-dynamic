@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { es } from "../i18n/es";
+
+const dict = es;
+const lang: "es" | "en" = Astro.currentLocale === "en" ? "en" : "es";
+---
+
+<Layout
+  lang={lang}
+  dict={dict}
+  title="404 — Code Dynamic"
+  description="Página no encontrada."
+>
+  <section class="mx-auto w-full max-w-6xl px-5 py-28 text-center sm:px-8">
+    <p class="font-mono text-[13px]" style="color: var(--accent)">404</p>
+    <h1 class="font-display mt-3 text-5xl font-extrabold">Nada por aquí.</h1>
+    <p class="mx-auto mt-4 max-w-md" style="color: var(--muted)">
+      La página que buscas no existe. <a class="underline" href="/es/">Volver al inicio</a> · <a class="underline" href="/en/">Back home</a>
+    </p>
+  </section>
+</Layout>
