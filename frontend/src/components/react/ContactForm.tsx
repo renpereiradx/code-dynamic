@@ -1,10 +1,14 @@
 import { useState } from "react";
 
-// Envío real vía FormSubmit (gratis, sin backend propio).
-// El primer envío requiere activar el buzón: FormSubmit manda un email
-// de confirmación a codedynamicdev@gmail.com — hay que abrirlo y clicar
-// "Activate" una sola vez. A partir de ahí, todo mensaje llega directo.
-const ENDPOINT = "https://formsubmit.co/ajax/codedynamicdev@gmail.com";
+// Envío vía backend Go (/api/contact) con rate limit por IP.
+// PUBLIC_CONTACT_API_URL se fija en build (ej. https://code-dynamic-api.onrender.com).
+// Fallback: FormSubmit directo (requiere activar el buzón una vez vía email
+// de confirmación a codedynamicdev@gmail.com).
+const API_BASE = (import.meta.env as unknown as Record<string, string | undefined>)
+  .PUBLIC_CONTACT_API_URL;
+const ENDPOINT = API_BASE
+  ? `${API_BASE.replace(/\/+$/, "")}/api/contact`
+  : "https://formsubmit.co/ajax/codedynamicdev@gmail.com";
 
 type Labels = {
   name: string;
