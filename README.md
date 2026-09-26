@@ -31,6 +31,21 @@ npm run build
 npm run preview
 ```
 
+## Deploy — Cloudflare Pages (plan gratuito)
+
+Sitio 100% estático (`frontend/dist/`), sin adapter SSR. Headers en `frontend/public/_headers`.
+
+```bash
+cd frontend
+npm run build
+npx wrangler pages deploy dist --project-name code-dynamic
+```
+
+Requiere auth una vez: `npx wrangler login` o `CLOUDFLARE_API_TOKEN` (permiso
+Account → Cloudflare Pages → Edit) + `CLOUDFLARE_ACCOUNT_ID`.
+URL resultante: `https://code-dynamic.pages.dev` (dominio propio configurable
+gratis en el dashboard de Cloudflare).
+
 ## Diseño
 
 Ver `design-system/MASTER.md` y `docs/PLAN.md`.
