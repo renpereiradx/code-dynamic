@@ -18,14 +18,10 @@ export const en: Dict = {
     primary: "Start a project",
     secondary: "See services",
     note: "Reply within < 24 h · No commitment",
-    stats: [
-      { value: "10+", label: "years shipping software" },
-      { value: "40+", label: "products launched" },
-      { value: "<200ms", label: "interactions by default" },
-    ],
+    stats: [{ value: "8", label: "years building software" }],
     techLabel: "The stack we work with",
   },
-  logos: ["Astro", "React", "TypeScript", "Tailwind", "Node.js", "Go", "PostgreSQL", "Docker"],
+  logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
     eyebrow: "Services",
     title: "Everything your product needs.",
@@ -39,7 +35,7 @@ export const en: Dict = {
       },
       {
         title: "Mobile apps",
-        desc: "Native and cross-platform experiences at a smooth 60 fps.",
+        desc: "Cross-platform apps with Flutter: a single codebase at a smooth 60 fps.",
         tag: "Mobile",
         span: "medium",
       },
@@ -82,7 +78,7 @@ export const en: Dict = {
   stack: {
     eyebrow: "Stack",
     title: "Modern where it matters, boring where it pays.",
-    items: ["Astro", "React", "TypeScript", "Tailwind CSS", "Go", "PostgreSQL", "Docker", "Cloudflare"],
+    items: ["Astro", "React", "TypeScript", "Tailwind CSS", "Flutter", "Go", "PostgreSQL", "Docker", "Tailscale", "Cloudflare"],
   },
   work: {
     eyebrow: "Work",

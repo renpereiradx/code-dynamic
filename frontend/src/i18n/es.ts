@@ -16,14 +16,10 @@ export const es = {
     primary: "Iniciar proyecto",
     secondary: "Ver servicios",
     note: "Respuesta en < 24 h · Sin compromiso",
-    stats: [
-      { value: "10+", label: "años construyendo software" },
-      { value: "40+", label: "productos lanzados" },
-      { value: "<200ms", label: "interacciones, por defecto" },
-    ],
+    stats: [{ value: "8", label: "años construyendo software" }],
     techLabel: "Stack con el que trabajamos",
   },
-  logos: ["Astro", "React", "TypeScript", "Tailwind", "Node.js", "Go", "PostgreSQL", "Docker"],
+  logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
     eyebrow: "Servicios",
     title: "Todo lo que tu producto necesita.",
@@ -37,7 +33,7 @@ export const es = {
       },
       {
         title: "Apps móviles",
-        desc: "Experiencias nativas y multiplataforma con rendimiento de 60 fps.",
+        desc: "Apps multiplataforma con Flutter: una sola base de código y rendimiento de 60 fps.",
         tag: "Móvil",
         span: "medium",
       },
@@ -80,7 +76,7 @@ export const es = {
   stack: {
     eyebrow: "Stack",
     title: "Moderno donde importa, aburrido donde conviene.",
-    items: ["Astro", "React", "TypeScript", "Tailwind CSS", "Go", "PostgreSQL", "Docker", "Cloudflare"],
+    items: ["Astro", "React", "TypeScript", "Tailwind CSS", "Flutter", "Go", "PostgreSQL", "Docker", "Tailscale", "Cloudflare"],
   },
   work: {
     eyebrow: "Casos",

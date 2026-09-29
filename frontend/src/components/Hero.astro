@@ -38,7 +38,7 @@ const servicesHref = `/${lang}/#servicios`;
     <p class="mt-4 font-mono text-[12.5px]" style="color: var(--muted)">{dict.hero.note}</p>
   </div>
 
-  <dl class="reveal mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-2xl sm:grid-cols-3" style="--d: 90ms; background: var(--line); border: 1px solid var(--line)" >
+  <dl class="reveal mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-2xl" style="--d: 90ms; background: var(--line); border: 1px solid var(--line); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
     {dict.hero.stats.map((s) => (
       <div class="px-6 py-5 text-center" style="background: var(--surface)">
         <dt class="order-2 mt-1 block text-[13.5px]" style="color: var(--muted)">{s.label}</dt>

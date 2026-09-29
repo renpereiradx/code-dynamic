@@ -113,6 +113,7 @@ export default function ContactForm({ labels }: { labels: Labels }) {
       const res = await postJSON(BACKEND_URL, payload);
       if (res.ok) {
         setStatus("ok");
+        setTried(false);
         setName("");
         setEmail("");
         setMessage("");
@@ -139,6 +140,7 @@ export default function ContactForm({ labels }: { labels: Labels }) {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("ok");
+      setTried(false);
       setName("");
       setEmail("");
       setMessage("");
