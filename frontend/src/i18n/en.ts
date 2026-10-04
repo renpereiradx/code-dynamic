@@ -14,7 +14,7 @@ export const en: Dict = {
     badge: "New · AI applied to product",
     titleA: "Software that feels",
     titleAccent: "as good as it looks.",
-    sub: "Code Dynamic designs and builds web apps, mobile apps and AI-powered systems. Apple-grade minimalism, engineering precision, and a friendly touch of Google.",
+    sub: "Code Dynamic designs and builds web apps, mobile apps and AI-powered systems. Minimalist design, precise engineering, and friendly service.",
     primary: "Start a project",
     secondary: "See services",
     note: "Reply within < 24 h · No commitment",
@@ -116,7 +116,7 @@ export const en: Dict = {
     },
   },
   footer: {
-    tagline: "Software development studio. Apple design, Google friendliness.",
+    tagline: "Software development studio. Minimalist design, precise engineering.",
     sections: "Sections",
     contactTitle: "Contact",
     demo: "Built with Astro, React & TypeScript",

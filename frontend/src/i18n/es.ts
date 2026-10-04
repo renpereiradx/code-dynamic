@@ -12,7 +12,7 @@ export const es = {
     badge: "Nuevo · IA aplicada a producto",
     titleA: "Software que se siente",
     titleAccent: "tan bien como se ve.",
-    sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas con IA. Minimalismo Apple, precisión de ingeniería y un toque amable de Google.",
+    sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas con IA. Diseño minimalista, ingeniería precisa y trato cercano.",
     primary: "Iniciar proyecto",
     secondary: "Ver servicios",
     note: "Respuesta en < 24 h · Sin compromiso",
@@ -114,7 +114,7 @@ export const es = {
     },
   },
   footer: {
-    tagline: "Estudio de desarrollo de software. Diseño Apple, amabilidad Google.",
+    tagline: "Estudio de desarrollo de software. Diseño minimalista e ingeniería precisa.",
     sections: "Secciones",
     contactTitle: "Contacto",
     demo: "Hecho con Astro, React y TypeScript",
