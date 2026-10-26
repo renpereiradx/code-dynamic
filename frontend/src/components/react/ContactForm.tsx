@@ -217,20 +217,19 @@ export default function ContactForm({ labels }: { labels: Labels }) {
         </p>
       )}
       {status === "sendError" && (
-        <p role="alert" className="text-sm font-medium text-[#FF9F0A]">
+        <p role="alert" className="text-sm font-medium text-[var(--warn)]">
           {labels.sendError}
         </p>
       )}
       {status === "ok" && (
-        <p role="status" className="text-sm font-medium text-[#34C759]">
+        <p role="status" className="text-sm font-medium text-[var(--ok)]">
           {labels.ok}
         </p>
       )}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="cursor-pointer rounded-full px-6 py-3 text-[15px] font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[.98] disabled:opacity-60"
-        style={{ background: "var(--accent)" }}
+        className="btn-accent cursor-pointer px-6 py-3 text-[15px] font-semibold disabled:opacity-60"
       >
         {status === "sending" ? labels.sending : labels.send}
       </button>
