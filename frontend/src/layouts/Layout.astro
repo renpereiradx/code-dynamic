@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import ThemeToggle from "../components/react/ThemeToggle";
+import WhatsAppFab from "../components/WhatsAppFab.astro";
 import type { Dict } from "../i18n/es";
 
 interface Props {
@@ -23,7 +24,7 @@ const base = import.meta.env.BASE_URL ?? "/";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0A0A0B" />
+    <meta name="theme-color" content="#111921" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -63,6 +64,7 @@ const base = import.meta.env.BASE_URL ?? "/";
 
         <div class="hidden items-center gap-7 text-[14.5px] md:flex" style="color: var(--muted)">
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#servicios`}>{dict.nav.services}</a>
+          <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#producto`}>{dict.nav.product}</a>
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#proceso`}>{dict.nav.process}</a>
           <a class="transition-colors hover:text-[var(--text)]" href={`/${lang}/#stack`}>{dict.nav.stack}</a>
         </div>
@@ -95,8 +97,7 @@ const base = import.meta.env.BASE_URL ?? "/";
           <ThemeToggle client:load />
           <a
             href={`/${lang}/#contacto`}
-            class="cursor-pointer hidden rounded-full px-5 py-2.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[.97] sm:inline-block"
-            style="background: var(--accent)"
+            class="btn-accent cursor-pointer hidden px-5 py-2.5 text-[14px] font-semibold sm:inline-block"
           >{dict.nav.cta}</a>
         </div>
       </nav>
@@ -121,6 +122,7 @@ const base = import.meta.env.BASE_URL ?? "/";
           <p class="text-[13px] font-semibold uppercase tracking-widest" style="color: var(--muted)">{dict.footer.sections}</p>
           <ul class="mt-4 space-y-2.5 text-[14.5px]">
             <li><a class="hover:underline" href={`/${lang}/#servicios`}>{dict.nav.services}</a></li>
+            <li><a class="hover:underline" href={`/${lang}/#producto`}>{dict.nav.product}</a></li>
             <li><a class="hover:underline" href={`/${lang}/#proceso`}>{dict.nav.process}</a></li>
             <li><a class="hover:underline" href={`/${lang}/#stack`}>{dict.nav.stack}</a></li>
             <li><a class="hover:underline" href={`/${lang}/#contacto`}>{dict.nav.contact}</a></li>
@@ -143,6 +145,8 @@ const base = import.meta.env.BASE_URL ?? "/";
         </div>
       </div>
     </footer>
+
+    <WhatsAppFab label={dict.contact.whatsapp} message={dict.contact.waMessage} />
 
     <script is:inline>
       // Reveal on scroll — una vez por elemento, respeta prefers-reduced-motion por CSS.
