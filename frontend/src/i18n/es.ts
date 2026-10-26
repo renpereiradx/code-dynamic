@@ -2,6 +2,7 @@ export const es = {
   lang: "es" as const,
   nav: {
     services: "Servicios",
+    product: "Producto",
     process: "Proceso",
     stack: "Stack",
     work: "Casos",
@@ -63,6 +64,46 @@ export const es = {
       },
     ],
   },
+  products: {
+    eyebrow: "Productos propios",
+    title: "También construimos producto.",
+    sub: "Dos productos propios nacidos de necesidades reales del Paraguay y operando en producción: la prueba concreta de lo que el estudio construye de punta a punta.",
+    items: [
+      {
+        id: "erp",
+        badge: "Producto",
+        name: "Sistema de Gestión Comercial",
+        desc: "Ventas, inventario multi-sucursal, compras, facturación electrónica SIFEN, caja y reportes. Instalado en el negocio del cliente, con licencia perpetua y sin mensualidad.",
+        bullets: [
+          "POS con código de barras y factura electrónica SIFEN",
+          "Inventario, caja y permisos por sucursal",
+          "Prueba completa de 30 días para el cliente final",
+        ],
+        chips: ["POS", "SIFEN", "Multi-sucursal", "BI"],
+        cta: "Conocer el producto",
+        demo: "Ver demo de 1 minuto",
+        windowTitle: "Ventas · Terminal 1 — Sucursal Centro",
+        totalLabel: "Total",
+        payLabel: "Cobrar",
+      },
+      {
+        id: "arena",
+        badge: "Producto",
+        name: "Arena Connect",
+        desc: "Gestión de torneos de beach tennis: inscripciones sin cuenta, sorteo de grupos, marcador en vivo por WebSocket, proyección para la TV del complejo y ranking del circuito.",
+        bullets: [
+          "Marcador en vivo que se actualiza sin recargar",
+          "Proyección TV: VS, cuadro, campeón y podio",
+          "Ranking del circuito que se recalcula solo",
+        ],
+        chips: ["Beach tennis", "Live", "TV", "Ranking"],
+        cta: "Conocer el producto",
+        demo: "Ver pantallas reales",
+        windowTitle: "Copa Área VVIP · Semifinal — Cancha 3",
+        liveLabel: "Live",
+      },
+    ],
+  },
   process: {
     eyebrow: "Proceso",
     title: "Simple, predecible, sin humo.",
@@ -102,6 +143,8 @@ export const es = {
     title: "Cuéntanos qué quieres construir.",
     sub: "Escríbenos a codedynamicdev@gmail.com o deja tu mensaje y te respondemos en menos de 24 h.",
     email: "codedynamicdev@gmail.com",
+    whatsapp: "Escribenos por WhatsApp",
+    waMessage: "Hola Code Dynamic, tengo una consulta sobre un proyecto.",
     form: {
       name: "Nombre",
       email: "Email",

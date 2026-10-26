@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import Services from "../../components/Services.astro";
+import Product from "../../components/Product.astro";
 import ProcessStack from "../../components/ProcessStack.astro";
 import Contact from "../../components/Contact.astro";
 import { en } from "../../i18n/en";
@@ -19,6 +20,7 @@ const dict = en as unknown as typeof es;
 >
   <Hero dict={dict} lang="en" />
   <Services dict={dict} />
+  <Product dict={dict} />
   <ProcessStack dict={dict} />
   <Contact dict={dict} />
 </Layout>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hybrid Bento Services</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#308ce8",
+              "primary-dark": "#1a6fb0",
+              "background-light": "#f6f7f8",
+              "background-dark": "#111921",
+              "surface-dark-1": "#161e27",
+              "surface-dark-2": "#1c242e",
+              "surface-dark-3": "#252d38",
+              "surface-outline": "#36414f",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+            },
+            borderRadius: {
+              "squircle": "1.75rem", // Approximating the Apple squircle look
+            },
+            backgroundImage: {
+               'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+               'liquid-blue': 'radial-gradient(circle at 50% 50%, rgba(48, 140, 232, 0.4) 0%, rgba(48, 140, 232, 0) 70%)',
+            }
+          },
+        },
+      }
+    </script>
+<style>/* Custom Scrollbar for Terminal */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none
+    }
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }
+/* Subtle texture overlay */
+.noise-bg {
+    position: relative
+    }
+.noise-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDTO5obcYyO4a-nMJ8APYAq5ymYB8eZw7mnyCNdI4WaTbVfjwo_ocUDERLEPKRTmiECIvUFmnovGQUy3hdbdASBfplx8e3_15iSRlTTq4mhAdqBOua0YuksSi3V3pX-mBO3abwHKF4RMy9xXRjpBWpWJl2So3zPqAz3Jgs3r0aHo6d3U9OT_nNv7L6dl3NBWEl9fnF5zKRnQWW20NVP_u_oRojWUWSkPO5I__xF-0fwTzAQL3WvDEPuM84e29czn1jZz4mpXqhIm4M);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display text-white selection:bg-primary selection:text-white overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 w-full border-b border-surface-outline/30 bg-background-dark/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background-dark/60">
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="size-9 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105 duration-300">
+<span class="material-symbols-outlined text-white" style="font-size: 24px;">grid_view</span>
+</div>
+<span class="text-white text-lg font-bold tracking-tight">Nexus Grid</span>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center gap-1">
+<a class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-full hover:bg-white/5 transition-all" href="#">Overview</a>
+<a class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-full hover:bg-white/5 transition-all" href="#">Nodes</a>
+<a class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-full hover:bg-white/5 transition-all" href="#">Security</a>
+<a class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-full hover:bg-white/5 transition-all" href="#">Logs</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-[20px]">search</span>
+<input class="h-10 w-64 rounded-full bg-surface-dark-3 border-none pl-10 pr-4 text-sm text-white placeholder-white/40 focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Search services..." type="text"/>
+</div>
+<button class="relative size-10 rounded-full bg-surface-dark-3 hover:bg-surface-outline flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-white/80">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 rounded-full bg-red-500 ring-2 ring-surface-dark-3"></span>
+</button>
+<div class="size-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-600 border border-white/10 overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="User avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqXcgZLy0zuCpiQCCKwxgmDO-k4H1mvdi7NqWm5trnQx7wQHHC11wC6V7GQ5C8y0LWbcbmEYkPurZys11ey0kIxEWQfMNWIL0IvDRd-xrAl2BOTrR3leqDXy4zKgeWAht1uEsJsDoteOzrZoCpnlcN0Eu7_rrByIXyRuoF5kpvBMs8AibycdIstNRbp11sCiWWgcPCk_LKT52kYH_EniaYZr-FRj5kv5z9vQ0RjnN1VkJeyx4jLRPRsd1X3CvuOaQArzN165iLRqQ"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">Service Grid</h1>
+<p class="text-lg text-white/50 font-medium">System status: <span class="text-emerald-400">Operational</span></p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-dark-3 text-white text-sm font-medium hover:bg-surface-outline transition-all border border-white/5">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+                    Customize
+                </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all active:scale-95 active:shadow-none">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Service
+                </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-5">
+<!-- Card 1: Hero 3D Render (Elevated) - Spans 2 cols, 2 rows -->
+<div class="group relative col-span-1 md:col-span-2 lg:row-span-2 rounded-squircle bg-surface-dark-2 overflow-hidden shadow-2xl border border-white/5 hover:border-primary/30 transition-all duration-300">
+<div class="absolute inset-0 bg-liquid-blue opacity-20 blur-3xl pointer-events-none"></div>
+<div class="relative h-full flex flex-col p-8 z-10">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs font-semibold backdrop-blur-md text-white border border-white/10 w-fit">
+                                Core Infrastructure
+                            </span>
+<h2 class="text-3xl font-bold mt-2 tracking-tight">Quantum Nodes</h2>
+</div>
+<button class="size-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-white">arrow_outward</span>
+</button>
+</div>
+<div class="flex-grow flex items-center justify-center py-6">
+<!-- Abstract 3D shape simulation using gradients and css -->
+<div class="relative w-64 h-64 md:w-80 md:h-80" data-alt="Abstract 3D glossy geometric shape floating in dark space">
+<div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-500 to-transparent opacity-80 rounded-full blur-2xl animate-pulse"></div>
+<img class="w-full h-full object-cover rounded-3xl opacity-90 mask-image:linear-gradient(black,transparent)" data-alt="Abstract 3D fluid shape with metallic blue finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnA4vWOYlN2hKJX5_c7ZH23gZW9XH9IcuTqQeFEa8L1NWZoFBtGYQtS9Jq25Jc6s2Mg7bdicDrZVUucvaF9KxzZ4_TBvGDmfIaFTPtWrzZ1QT9GItowDWsxaSAs_wGILrht-WQ43k1axgrPFYJ_NEqcWCL2_3NhQtd-SJVn7bKNluJ5_Fl-3HytHNNSmna2EG5H2cegW-MXx6CkMuETiJWTHWa7xEyAetZNPm3gttumRBg6BCh2n92XXEuJ0LkEZYaQqRElSTMMuU" style="-webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%); mask-image: radial-gradient(circle, black 40%, transparent 70%);"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+<div>
+<p class="text-white/40 text-xs uppercase tracking-wider font-semibold">Capacity</p>
+<p class="text-white text-lg font-bold">84%</p>
+</div>
+<div>
+<p class="text-white/40 text-xs uppercase tracking-wider font-semibold">Latency</p>
+<p class="text-white text-lg font-bold">12ms</p>
+</div>
+<div>
+<p class="text-white/40 text-xs uppercase tracking-wider font-semibold">Region</p>
+<p class="text-white text-lg font-bold">US-East</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Analytics (Filled - Liquid Glass) - Spans 2 cols, 1 row -->
+<div class="relative col-span-1 md:col-span-2 lg:col-span-2 rounded-squircle bg-surface-dark-3 overflow-hidden border border-white/5 group hover:border-white/10 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none"></div>
+<div class="p-6 flex flex-col h-full justify-between relative z-10">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h3 class="text-lg font-semibold">Traffic Analysis</h3>
+</div>
+<select class="bg-black/20 border-none text-xs text-white/70 rounded-lg px-3 py-1.5 focus:ring-0 cursor-pointer hover:bg-black/40 transition-colors">
+<option>Last 24h</option>
+<option>Last Week</option>
+</select>
+</div>
+<!-- Liquid Graph Representation -->
+<div class="relative h-24 w-full flex items-end gap-1 px-1">
+<!-- Bars simulated with liquid style -->
+<div class="w-full bg-white/5 rounded-lg h-full relative overflow-hidden flex items-end">
+<div class="w-full absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-primary/60 to-primary/0 backdrop-blur-sm" style="clip-path: polygon(0 100%, 0 40%, 10% 30%, 20% 60%, 30% 50%, 40% 80%, 50% 40%, 60% 30%, 70% 60%, 80% 45%, 90% 20%, 100% 50%, 100% 100%);"></div>
+<div class="w-full absolute bottom-0 left-0 right-0 h-[60%] border-t-2 border-primary/50" style="clip-path: polygon(0 100%, 0 40%, 10% 30%, 20% 60%, 30% 50%, 40% 80%, 50% 40%, 60% 30%, 70% 60%, 80% 45%, 90% 20%, 100% 50%, 100% 100%); opacity: 0.8"></div>
+</div>
+</div>
+<div class="flex justify-between items-center mt-4 text-sm text-white/50">
+<span>1.2 PB Total</span>
+<span class="flex items-center gap-1 text-emerald-400 font-medium">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12.5%
+                        </span>
+</div>
+</div>
+</div>
+<!-- Card 3: Uptime (Outlined) - Spans 1 col, 1 row -->
+<div class="col-span-1 rounded-squircle border border-surface-outline bg-transparent p-6 flex flex-col justify-between hover:bg-surface-dark-2/50 transition-colors group">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">timer</span>
+<span class="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse"></span>
+</div>
+<div>
+<div class="text-4xl font-bold tracking-tight text-white mb-1">99.99<span class="text-xl text-white/40">%</span></div>
+<p class="text-sm text-white/50 font-medium">System Uptime</p>
+</div>
+</div>
+<!-- Card 4: Security (Filled) - Spans 1 col, 1 row -->
+<div class="col-span-1 rounded-squircle bg-surface-dark-3 p-6 flex flex-col gap-4 border border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-white/70 text-[20px]">shield</span>
+<h3 class="font-semibold">Security</h3>
+</div>
+<div class="space-y-3">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm text-white/70 group-hover:text-white transition-colors">Firewall</span>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors">
+<span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition duration-200 ease-in-out"></span>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm text-white/70 group-hover:text-white transition-colors">DDoS Guard</span>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors">
+<span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition duration-200 ease-in-out"></span>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm text-white/70 group-hover:text-white transition-colors">2FA Auth</span>
+<div class="relative inline-flex h-6 w-11 items-center rounded-full bg-surface-outline transition-colors">
+<span class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white/50 transition duration-200 ease-in-out"></span>
+</div>
+</label>
+</div>
+</div>
+<!-- Card 5: Terminal Logs (Outlined Vertical) - Spans 1 col, 2 rows (on large) -->
+<div class="col-span-1 md:col-span-1 lg:row-span-2 rounded-squircle bg-black/40 border border-surface-outline p-1 flex flex-col overflow-hidden backdrop-blur-sm">
+<div class="flex items-center gap-2 px-5 py-3 border-b border-white/5 bg-white/5">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
+</div>
+<span class="text-xs font-mono text-white/40 ml-2">deployment-logs</span>
+</div>
+<div class="flex-1 p-4 overflow-y-auto scrollbar-hide font-mono text-xs leading-relaxed space-y-2">
+<div class="flex gap-2">
+<span class="text-emerald-500">➜</span>
+<span class="text-white/80">init_sequence --force</span>
+</div>
+<div class="text-white/50 pl-4">
+                        [10:42:01] Loading modules...<br/>
+                        [10:42:02] Verified checksums<br/>
+                        [10:42:03] Connecting to cluster...
+                    </div>
+<div class="flex gap-2 pt-2">
+<span class="text-emerald-500">➜</span>
+<span class="text-white/80">check_status</span>
+</div>
+<div class="text-white/50 pl-4">
+<span class="text-blue-400">info:</span> All systems nominal<br/>
+<span class="text-yellow-400">warn:</span> Memory spike at 90%<br/>
+<span class="text-blue-400">info:</span> Auto-scaling initiated
+                    </div>
+<div class="flex gap-2 pt-2 animate-pulse">
+<span class="text-emerald-500">➜</span>
+<span class="text-white/80">_</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Team/Contributors (Filled) - Spans 1 col, 1 row -->
+<div class="col-span-1 rounded-squircle bg-surface-dark-3 p-6 flex flex-col justify-between hover:bg-surface-dark-3/80 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-semibold text-white">Active Team</h3>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md">4 Online</span>
+</div>
+<div class="flex -space-x-3 overflow-hidden py-2">
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-dark-3 object-cover" data-alt="Female team member portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Km9m7DyIsjUZKCUX6RtRtqqaCekRznv-4OmU2WW5zAYO9UYT795bSCQxV-rLruyF6D0xdHW2SSzN-c1TviK6OXCeiQs8m7gfSdhLIjIUd8CXkrN2J-kK1okAwrzLLs453hx_mg88gCzhqGdYPyNO30SIwXPauI7XEtL2jqoPgvKABkjLJ-DS1pSiJfqMdvA42gN7CLiY_ay0hAP35DpzNHg3PT-YzbgAdY3gyXe7-UqPtojPtoNNtKsFwpIPonwUoDix0HS7554"/>
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-dark-3 object-cover" data-alt="Male team member portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA09OiOdRDgU4pXucjwn9jOV2lRwKiQQztQh-vaSQPpWONImRxDw1CLLsWP5gYG1ZRxdSRZGFWQFJp0DKdfoNfJCOcMzfJPQhz6BqH0E8lkk0QKHTXsKjbwcDQOYtedw2yCjlBFOYCYwAQeWF3pZNlgBY4RFyjjXO695kiJks8DubBOGPWvXqO-09JB83mh6pBMNtutebbCq7pKuK9DZzjpTHpbUwr4786rMKj1dqwNhjxrrPQ1_VaBIu4JHXBRDCrw6SnPLG1Zzdw"/>
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-surface-dark-3 object-cover" data-alt="Male team member portrait smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABM5X_UyHln5XN6iNUvZFoY6MrjNvn0GUeLkG07H6g9nf709e0PL8e2Rz01adtM1-u3q5j92670BhJ0fIuE95UhJLlL_Z8N7Sqi7DGFPWnS5yJkge_PnQg2lbwYTxZ2eYZpGVSKSOWFJuZG4n9eMvpOo-afCtqx1rPZZTolD20Y6SilSM-6xW1-fSvdj8lF0UdR8ZhN_Lf91gQJdP7QPcR81bQxF6EqtMXwhPi7P7SBeYp0j4fdE0tn1u7ztKlWSwi1U6t1x7Hc-Y"/>
+<div class="h-10 w-10 rounded-full ring-2 ring-surface-dark-3 bg-surface-outline flex items-center justify-center text-xs font-bold text-white z-10">
+                        +8
+                    </div>
+</div>
+<button class="mt-4 w-full py-2 rounded-lg border border-white/10 text-xs font-medium text-white/70 hover:bg-white/5 transition-colors">
+                    Manage Access
+                </button>
+</div>
+<!-- Card 7: Storage Visualization (Gradient Block) - Spans 2 cols, 1 row -->
+<div class="col-span-1 md:col-span-2 rounded-squircle bg-gradient-to-r from-surface-dark-2 to-surface-dark-3 p-6 flex items-center gap-8 border border-white/5 relative overflow-hidden group">
+<!-- Background texture -->
+<div class="absolute right-0 top-0 bottom-0 w-1/2 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-purple-500/20 rounded-lg text-purple-400">
+<span class="material-symbols-outlined">cloud_circle</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">Cloud Storage</h3>
+<p class="text-sm text-white/50">S3 Buckets • Encrypted</p>
+</div>
+</div>
+<div class="mt-6">
+<div class="flex justify-between text-xs font-medium mb-2">
+<span class="text-white/70">Used Space</span>
+<span class="text-white">780 GB / 1 TB</span>
+</div>
+<div class="w-full bg-black/40 rounded-full h-3 overflow-hidden">
+<div class="bg-gradient-to-r from-purple-500 to-primary h-full rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<div class="hidden sm:flex flex-col items-end gap-2 relative z-10">
+<button class="size-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all text-white/80 hover:text-white shadow-lg">
+<span class="material-symbols-outlined">upload_file</span>
+</button>
+<span class="text-xs text-white/40 font-medium">Upload</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-white/5 mt-12 py-8 bg-background-dark">
+<div class="max-w-[1400px] mx-auto px-4 text-center">
+<p class="text-white/30 text-sm font-medium">
+                © 2023 Nexus Services. Hybrid Design System.
+            </p>
+</div>
+</footer>
+</body></html>

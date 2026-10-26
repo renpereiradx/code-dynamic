@@ -4,6 +4,7 @@ export const en: Dict = {
   lang: "en" as const,
   nav: {
     services: "Services",
+    product: "Product",
     process: "Process",
     stack: "Stack",
     work: "Work",
@@ -65,6 +66,46 @@ export const en: Dict = {
       },
     ],
   },
+  products: {
+    eyebrow: "Our products",
+    title: "We build products too.",
+    sub: "Two in-house products born from real Paraguayan needs and running in production — concrete proof of what the studio builds end to end.",
+    items: [
+      {
+        id: "erp",
+        badge: "Product",
+        name: "Commercial Management System",
+        desc: "Sales, multi-branch inventory, purchasing, SIFEN e-invoicing, cash and reports. Installed at the client's business, with a perpetual license and no monthly fee.",
+        bullets: [
+          "Barcode POS with SIFEN electronic invoicing",
+          "Per-branch inventory, cash and permissions",
+          "Full 30-day trial for the end client",
+        ],
+        chips: ["POS", "SIFEN", "Multi-branch", "BI"],
+        cta: "Explore the product",
+        demo: "Watch 1-min demo",
+        windowTitle: "Sales · Terminal 1 — Branch Downtown",
+        totalLabel: "Total",
+        payLabel: "Charge",
+      },
+      {
+        id: "arena",
+        badge: "Product",
+        name: "Arena Connect",
+        desc: "Beach tennis tournament management: no-account registrations, group draw, live WebSocket scoreboard, TV projection for the venue and circuit ranking.",
+        bullets: [
+          "Live scoreboard that updates without reloading",
+          "TV projection: VS, bracket, champion and podium",
+          "Circuit ranking recalculated automatically",
+        ],
+        chips: ["Beach tennis", "Live", "TV", "Ranking"],
+        cta: "Explore the product",
+        demo: "See real screens",
+        windowTitle: "Área VVIP Cup · Semifinal — Court 3",
+        liveLabel: "Live",
+      },
+    ],
+  },
   process: {
     eyebrow: "Process",
     title: "Simple, predictable, no smoke.",
@@ -104,6 +145,8 @@ export const en: Dict = {
     title: "Tell us what you want to build.",
     sub: "Write to codedynamicdev@gmail.com or leave a message and we'll reply within 24 h.",
     email: "codedynamicdev@gmail.com",
+    whatsapp: "Message us on WhatsApp",
+    waMessage: "Hi Code Dynamic, I have a question about a project.",
     form: {
       name: "Name",
       email: "Email",
