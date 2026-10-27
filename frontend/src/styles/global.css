@@ -10,7 +10,7 @@
 /* Dark-first (default). Light via [data-theme="light"].
    Paleta Apple+Google con tinte azul (design-system/MASTER.md §3). */
 :root {
-  --bg: #111921;
+  --bg: #0a0a0b;
   --surface: #161e27;
   --surface-2: #1c242e;
   --surface-3: #252d38;
@@ -24,7 +24,7 @@
   --accent-ink: #ffffff;
   --ok: #34d399;
   --warn: #ffb224;
-  --nav-bg: rgba(17, 25, 33, 0.78);
+  --nav-bg: rgba(10, 10, 11, 0.72);
   color-scheme: dark;
 }
 

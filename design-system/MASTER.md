@@ -31,7 +31,7 @@ Overrides por página en `design-system/pages/*.md` (crear solo si desvían del 
 
 | Rol         | Dark (default)  | Light      | Nota                            |
 |-------------|-----------------|------------|---------------------------------|
-| bg          | #111921         | #F6F7F8    | base con tinte azul, no negro   |
+| bg          | #0A0A0B         | #F6F7F8    | negro casi puro (decisión 2026-10-26); cards con tinte azul |
 | surface-1   | #161E27         | #FFFFFF    | cards bento                     |
 | surface-2   | #1C242E         | #ECEEF1    | hover / inner blocks            |
 | surface-3   | #252D38         | #E2E6EB    | inputs, icon buttons            |
