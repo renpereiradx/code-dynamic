@@ -10,21 +10,21 @@ export const es = {
     cta: "Hablemos",
   },
   hero: {
-    badge: "Nuevo · IA aplicada a producto",
+    badge: "", // oculto de momento: decía "Nuevo · IA aplicada a producto"
     titleA: "Software que se siente",
     titleAccent: "tan bien como se ve.",
-    sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas con IA. Diseño minimalista, ingeniería precisa y trato cercano.",
+    sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas. Diseño minimalista, ingeniería precisa y trato cercano.",
     primary: "Iniciar proyecto",
     secondary: "Ver servicios",
     note: "Respuesta en < 24 h · Sin compromiso",
-    stats: [{ value: "8", label: "años construyendo software" }],
+    stats: [{ value: "9", label: "años construyendo software" }],
     techLabel: "Stack con el que trabajamos",
   },
   logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
     eyebrow: "Servicios",
     title: "Todo lo que tu producto necesita.",
-    sub: "Seis capacidades, un solo equipo.",
+    sub: "Cinco capacidades, un solo equipo.",
     items: [
       {
         title: "Aplicaciones web",
@@ -44,12 +44,13 @@ export const es = {
         tag: "Backend",
         span: "medium",
       },
-      {
-        title: "IA & Automatización",
-        desc: "Asistentes, RAG, pipelines y agentes que ahorran horas reales de operación.",
-        tag: "IA",
-        span: "small",
-      },
+      // Oculto de momento — reactivar cuando haya un caso real que mostrar:
+      // {
+      //   title: "IA & Automatización",
+      //   desc: "Asistentes, RAG, pipelines y agentes que ahorran horas reales de operación.",
+      //   tag: "IA",
+      //   span: "small",
+      // },
       {
         title: "UI / UX",
         desc: "Sistemas de diseño, prototipos y motion con propósito.",
@@ -110,7 +111,7 @@ export const es = {
     steps: [
       { n: "01", title: "Descubrir", desc: "Una semana para entender el problema, usuarios y métricas de éxito." },
       { n: "02", title: "Diseñar", desc: "Prototipo navegable y sistema de diseño antes de escribir código serio." },
-      { n: "03", title: "Construir", desc: "Sprints semanales con demos reales y releases continuos." },
+      { n: "03", title: "Construir", desc: "Iteraciones por etapas, con avances visibles y comunicación directa durante todo el proyecto." },
       { n: "04", title: "Escalar", desc: "Medimos, optimizamos y dejamos todo documentado para tu equipo." },
     ],
   },
@@ -126,7 +127,7 @@ export const es = {
     items: [
       { title: "Panel SaaS B2B", desc: "Migración a Astro Islands: LCP −45 %, INP < 150 ms.", tag: "SaaS" },
       { title: "App de reservas", desc: "Reserva en 3 toques, +22 % conversión en móvil.", tag: "Móvil" },
-      { title: "Asistente con IA", desc: "RAG sobre docs internas, −30 h/semana de soporte.", tag: "IA" },
+      { title: "Facturación electrónica", desc: "Integración SIFEN con emisión y validación automática de documentos.", tag: "Backend" },
     ],
   },
   quotes: {

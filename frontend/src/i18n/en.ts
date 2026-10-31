@@ -12,21 +12,21 @@ export const en: Dict = {
     cta: "Let's talk",
   },
   hero: {
-    badge: "New · AI applied to product",
+    badge: "", // hidden for now: said "New · AI applied to product"
     titleA: "Software that feels",
     titleAccent: "as good as it looks.",
-    sub: "Code Dynamic designs and builds web apps, mobile apps and AI-powered systems. Minimalist design, precise engineering, and friendly service.",
+    sub: "Code Dynamic designs and builds web apps, mobile apps and systems. Minimalist design, precise engineering, and friendly service.",
     primary: "Start a project",
     secondary: "See services",
     note: "Reply within < 24 h · No commitment",
-    stats: [{ value: "8", label: "years building software" }],
+    stats: [{ value: "9", label: "years building software" }],
     techLabel: "The stack we work with",
   },
   logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
     eyebrow: "Services",
     title: "Everything your product needs.",
-    sub: "Six capabilities, one team.",
+    sub: "Five capabilities, one team.",
     items: [
       {
         title: "Web applications",
@@ -46,12 +46,13 @@ export const en: Dict = {
         tag: "Backend",
         span: "medium",
       },
-      {
-        title: "AI & Automation",
-        desc: "Assistants, RAG, pipelines and agents that save real ops hours.",
-        tag: "AI",
-        span: "small",
-      },
+      // Hidden for now — re-enable when there is a real case to show:
+      // {
+      //   title: "AI & Automation",
+      //   desc: "Assistants, RAG, pipelines and agents that save real ops hours.",
+      //   tag: "AI",
+      //   span: "small",
+      // },
       {
         title: "UI / UX",
         desc: "Design systems, prototypes and motion with purpose.",
@@ -112,7 +113,7 @@ export const en: Dict = {
     steps: [
       { n: "01", title: "Discover", desc: "One week to understand the problem, users and success metrics." },
       { n: "02", title: "Design", desc: "Clickable prototype and design system before serious code." },
-      { n: "03", title: "Build", desc: "Weekly sprints with real demos and continuous releases." },
+      { n: "03", title: "Build", desc: "Milestone-based iterations, visible progress and direct communication throughout the project." },
       { n: "04", title: "Scale", desc: "We measure, optimize and document everything for your team." },
     ],
   },
@@ -128,7 +129,7 @@ export const en: Dict = {
     items: [
       { title: "B2B SaaS dashboard", desc: "Astro Islands migration: LCP −45%, INP < 150 ms.", tag: "SaaS" },
       { title: "Booking app", desc: "3-tap booking, +22% mobile conversion.", tag: "Mobile" },
-      { title: "AI assistant", desc: "RAG over internal docs, −30 h/week of support.", tag: "AI" },
+      { title: "E-invoicing", desc: "SIFEN integration with automatic document issuing and validation.", tag: "Backend" },
     ],
   },
   quotes: {
