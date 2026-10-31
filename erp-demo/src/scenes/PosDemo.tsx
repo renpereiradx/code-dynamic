@@ -86,8 +86,8 @@ export const PosDemo: React.FC = () => {
               margin: vertical ? '0 0 8px' : undefined,
             }}
           >
-            Escaneás el código de barras o buscás por nombre. El inventario (stock) se
-            descuenta solo, sucursal por sucursal.
+            El ticket sale impreso y el saldo queda en la cuenta del cliente.
+            El inventario de todas tus sucursales, siempre bajo control.
           </p>
           <div style={{display: 'flex', flexWrap: 'wrap', gap: vertical ? 12 : 16, marginTop: vertical ? 22 : 36}}>
             {['Efectivo', 'Tarjeta', 'Cta. cte.'].map((m, i) => {
@@ -118,7 +118,7 @@ export const PosDemo: React.FC = () => {
               letterSpacing: 1,
             }}
           >
-            Teclas 1–9 = medios de pago, sin mouse
+            Atajos de teclado para la hora pico · teclas 1–9 = medios de pago
           </div>
         </div>
 
@@ -207,7 +207,7 @@ export const PosDemo: React.FC = () => {
               fontFamily: theme.fontMono,
             }}
           >
-            {ticketDone ? '✓ COBRADO — ticket impreso · stock descontado' : 'Agregando items…'}
+            {ticketDone ? '✓ COBRADO — ticket impreso' : 'Agregando items…'}
           </div>
         </div>
       </div>

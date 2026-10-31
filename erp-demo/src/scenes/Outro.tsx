@@ -7,7 +7,7 @@ export const DURATION = 180;
 
 // Diferenciales del flyer (GUIA_VENTAS §6, §8)
 const STATS = [
-  ['30 días', 'de prueba, completo y gratis'],
+  ['30 días', 'de prueba gratis, en 1 sucursal'],
   ['1 pago', 'licencia perpetua'],
   ['0', 'mensualidades'],
 ];

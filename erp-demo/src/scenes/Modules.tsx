@@ -7,13 +7,13 @@ export const DURATION = 240;
 
 // Los 10 módulos del flyer (GUIA_VENTAS §5), en lenguaje de cliente
 const MODULES = [
-  {icon: '◉', name: 'Ventas y caja', desc: 'Vendé por código o nombre, cobrá en segundos', hot: true},
-  {icon: '▣', name: 'Inventario (stock)', desc: 'Por sucursal, con transferencias entre locales'},
+  {icon: '◉', name: 'Ventas y caja', desc: 'Cobrá en segundos, incluso en hora pico', hot: true},
+  {icon: '▣', name: 'Inventario (stock)', desc: 'Cuánto hay en cada local y en total, con transferencias'},
   {icon: '⬢', name: 'Compras', desc: 'Órdenes a proveedores y cuentas por pagar'},
   {icon: '⬣', name: 'Factura electrónica', desc: 'SIFEN nativo + libros fiscales', hot: true},
   {icon: '▤', name: 'Cuentas por cobrar', desc: 'Quién te debe y desde cuándo'},
   {icon: '◎', name: 'Reservas', desc: 'Con agenda; al concretar, ya son ventas'},
-  {icon: '⬒', name: 'Producción', desc: 'Kits con descuento automático de insumos'},
+  {icon: '⬒', name: 'Producción', desc: 'Para quien produce: insumos al producto terminado'},
   {icon: '⇄', name: 'Multi-moneda', desc: 'Precios y pagos con tu tasa de cambio'},
   {icon: '◈', name: 'Reportes BI', desc: 'Dashboards, rentabilidad y pronósticos', hot: true},
   {icon: '⬔', name: 'Multi-sucursal', desc: 'Inventario, caja y permisos por local'},
@@ -42,7 +42,7 @@ export const Modules: React.FC = () => {
         <SceneTitle
           kicker="Módulos"
           title="Un solo sistema para tu negocio"
-          sub="La venta descuenta el stock, la compra lo repone y todo queda integrado"
+          sub="La venta conecta stock, factura, caja y cuenta del cliente — todo queda integrado"
         />
         <div
           style={{
