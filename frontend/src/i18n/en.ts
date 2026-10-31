@@ -75,7 +75,7 @@ export const en: Dict = {
       {
         id: "erp",
         badge: "Product",
-        name: "Commercial Management System",
+        name: "CDGC · Commercial Management System",
         desc: "Sales, multi-branch inventory, purchasing, SIFEN e-invoicing, cash and reports. Installed at the client's business, with a perpetual license and no monthly fee.",
         bullets: [
           "Barcode POS with SIFEN electronic invoicing",
@@ -92,7 +92,7 @@ export const en: Dict = {
       {
         id: "arena",
         badge: "Product",
-        name: "Arena Connect",
+        name: "CDAC · Tournament Management",
         desc: "Beach tennis tournament management: player or staff registrations, group draw, live WebSocket scoreboard, TV projection for the venue and circuit ranking.",
         bullets: [
           "Live scoreboard that updates without reloading",

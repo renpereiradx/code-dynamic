@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          Sistema de gestión comercial · Paraguay
+          CDGC · Sistema de gestión comercial · Paraguay
         </div>
         <div
           style={{

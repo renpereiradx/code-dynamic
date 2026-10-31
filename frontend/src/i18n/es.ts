@@ -73,7 +73,7 @@ export const es = {
       {
         id: "erp",
         badge: "Producto",
-        name: "Sistema de Gestión Comercial",
+        name: "CDGC · Sistema de Gestión Comercial",
         desc: "Ventas, inventario multi-sucursal, compras, facturación electrónica SIFEN, caja y reportes. Instalado en el negocio del cliente, con licencia perpetua y sin mensualidad.",
         bullets: [
           "POS con código de barras y factura electrónica SIFEN",
@@ -90,7 +90,7 @@ export const es = {
       {
         id: "arena",
         badge: "Producto",
-        name: "Arena Connect",
+        name: "CDAC · Gestión de torneos",
         desc: "Gestión de torneos de beach tennis: inscripciones desde el celular o por staff, sorteo de grupos, marcador en vivo por WebSocket, proyección para la TV del complejo y ranking del circuito.",
         bullets: [
           "Marcador en vivo que se actualiza sin recargar",
