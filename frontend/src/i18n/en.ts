@@ -93,7 +93,7 @@ export const en: Dict = {
         id: "arena",
         badge: "Product",
         name: "Arena Connect",
-        desc: "Beach tennis tournament management: no-account registrations, group draw, live WebSocket scoreboard, TV projection for the venue and circuit ranking.",
+        desc: "Beach tennis tournament management: player or staff registrations, group draw, live WebSocket scoreboard, TV projection for the venue and circuit ranking.",
         bullets: [
           "Live scoreboard that updates without reloading",
           "TV projection: VS, bracket, champion and podium",

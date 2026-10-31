@@ -91,7 +91,7 @@ export const es = {
         id: "arena",
         badge: "Producto",
         name: "Arena Connect",
-        desc: "Gestión de torneos de beach tennis: inscripciones sin cuenta, sorteo de grupos, marcador en vivo por WebSocket, proyección para la TV del complejo y ranking del circuito.",
+        desc: "Gestión de torneos de beach tennis: inscripciones desde el celular o por staff, sorteo de grupos, marcador en vivo por WebSocket, proyección para la TV del complejo y ranking del circuito.",
         bullets: [
           "Marcador en vivo que se actualiza sin recargar",
           "Proyección TV: VS, cuadro, campeón y podio",
