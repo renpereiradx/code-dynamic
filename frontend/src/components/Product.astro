@@ -67,21 +67,23 @@ const teams = {
               </div>
               <span class="text-[12.5px] font-medium" style="color:#98a2b3">{p.windowTitle}</span>
             </div>
-            <ul class="space-y-2 p-4">
-              {cart.map((item) => (
-                <li class="flex items-center justify-between rounded-xl px-3.5 py-2.5" style="background:#16161b">
-                  <span class="text-[13.5px] font-medium" style="color:#f5f5f7">{item.name}</span>
-                  <span class="font-mono text-[12.5px]" style="color:#98a2b3">{item.qty} × ····· Gs. {item.total}</span>
-                </li>
-              ))}
-            </ul>
-            <div class="flex items-center justify-between border-t px-4 py-3" style="border-color: rgba(255,255,255,.07)">
-              <span class="text-[12px] font-semibold uppercase tracking-widest" style="color:#71717a">{p.totalLabel}</span>
-              <span class="font-display text-[20px] font-bold" style="color:#f5f5f7">Gs. 61.300</span>
-            </div>
-            <div class="px-4 pb-4">
-              <div class="flex items-center justify-center rounded-xl py-2.5 text-[13px] font-bold" style="background: var(--accent); color:#fff">
-                {p.payLabel} · Gs. 61.300
+            <div class="ken-burns">
+              <ul class="space-y-2 p-4">
+                {cart.map((item) => (
+                  <li class="flex items-center justify-between rounded-xl px-3.5 py-2.5" style="background:#16161b">
+                    <span class="text-[13.5px] font-medium" style="color:#f5f5f7">{item.name}</span>
+                    <span class="font-mono text-[12.5px]" style="color:#98a2b3">{item.qty} × ····· Gs. {item.total}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="flex items-center justify-between border-t px-4 py-3" style="border-color: rgba(255,255,255,.07)">
+                <span class="text-[12px] font-semibold uppercase tracking-widest" style="color:#71717a">{p.totalLabel}</span>
+                <span class="font-display text-[20px] font-bold" style="color:#f5f5f7">Gs. 61.300</span>
+              </div>
+              <div class="px-4 pb-4">
+                <div class="flex items-center justify-center rounded-xl py-2.5 text-[13px] font-bold" style="background: var(--accent); color:#fff">
+                  {p.payLabel} · Gs. 61.300
+                </div>
               </div>
             </div>
           </div>
@@ -94,7 +96,7 @@ const teams = {
                 {p.liveLabel}
               </span>
             </div>
-            <div class="px-4 py-4" style="grid-template-columns: 1fr repeat(3, 2.6rem); display: grid; column-gap: 10px; align-items: center;">
+            <div class="ken-burns px-4 py-4" style="grid-template-columns: 1fr repeat(3, 2.6rem); display: grid; column-gap: 10px; align-items: center;">
               <span class="text-[13px] font-semibold uppercase tracking-wide" style="color:#38e1ff">{teams.a.name}</span>
               {teams.a.sets.map((s, k) => (
                 <span class="text-center font-display text-[20px] font-bold" style={k === 2 ? "color:#f7c85f" : "color:#e6ebf2"}>{s}</span>

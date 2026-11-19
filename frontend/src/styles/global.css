@@ -111,17 +111,46 @@ body {
   );
 }
 
-/* Entrada del hero: una vez, al cargar (stagger por --d) */
+/* Entrada del hero: una vez, al cargar (stagger por --d). Blur-in cinemático. */
 .enter {
   opacity: 0;
-  transform: translateY(16px);
-  animation: enter-in 0.7s var(--ease-apple) forwards;
+  transform: translateY(22px) scale(0.985);
+  filter: blur(10px);
+  animation: enter-in 0.9s var(--ease-apple) forwards;
   animation-delay: var(--d, 0ms);
 }
 @keyframes enter-in {
   to {
     opacity: 1;
     transform: none;
+    filter: blur(0);
+  }
+}
+
+/* Drift ambiental de la grilla de puntos: un tile (26px) por ciclo = loop perfecto. */
+.hero-bg {
+  animation: dots-drift 14s linear infinite;
+}
+@keyframes dots-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 26px 26px;
+  }
+}
+
+/* Ken Burns — movimiento vivo en maquetas de producto (simula loop de video). */
+.ken-burns {
+  transform-origin: center;
+  animation: ken-burns-zoom 16s ease-in-out infinite alternate;
+}
+@keyframes ken-burns-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.035);
   }
 }
 
@@ -167,8 +196,8 @@ body {
 /* Scroll-driven: la regla se dibuja con el scroll donde el navegador lo soporta */
 @supports (animation-timeline: view()) {
   .stmt-rule {
-    animation: rule-draw both ease-out;
-    animation-timeline: view();
+    animation: rule-draw 1s ease-out both;
+    animation-timeline: var(--tl, view());
     animation-range: entry 0% cover 45%;
   }
   @keyframes rule-draw {
@@ -177,6 +206,19 @@ body {
     }
     to {
       transform: scaleX(1);
+    }
+  }
+  /* Disolución de escena al salir del viewport (corte de video): scrubbed por scroll */
+  .stmt-scene {
+    animation: scene-exit 1s linear both;
+    animation-timeline: var(--tl, view());
+    animation-range: exit 0% exit 85%;
+  }
+  @keyframes scene-exit {
+    to {
+      opacity: 0.2;
+      filter: blur(7px);
+      transform: scale(0.985);
     }
   }
 }
@@ -218,18 +260,22 @@ body {
   transform: none;
 }
 
-/* Reveal on scroll (JS adds .is-visible) */
+/* Reveal on scroll (JS adds .is-visible) — blur-in estilo motionsites:
+   las escenas "se enfocan" al entrar (blur + rise + fade). */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
+  filter: blur(6px);
   transition:
-    opacity 0.6s var(--ease-apple),
-    transform 0.6s var(--ease-apple);
+    opacity 0.7s var(--ease-apple),
+    transform 0.7s var(--ease-apple),
+    filter 0.7s var(--ease-apple);
   transition-delay: var(--d, 0ms);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: blur(0);
 }
 
 /* Bento hover */
@@ -253,11 +299,13 @@ body {
   animation: marquee 28s linear infinite;
 }
 
-/* Scroll progress (JS fallback sets width; CSS timeline where supported) */
+/* Scroll progress (JS fallback sets width; CSS timeline where supported)
+   --tl con var(): evita que el minificador pliegue el timeline dentro del
+   shorthand `animation` (declaración inválida para Chrome). */
 .scroll-progress {
   transform-origin: 0 50%;
-  animation: scroll-grow linear both;
-  animation-timeline: scroll();
+  animation: scroll-grow 1s linear both;
+  animation-timeline: var(--tl, scroll());
 }
 @keyframes scroll-grow {
   from { transform: scaleX(0); }
@@ -266,10 +314,12 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   .marquee-track { animation: none; }
   .scroll-progress { animation: none; }
-  .enter { opacity: 1; transform: none; animation: none; }
+  .enter { opacity: 1; transform: none; filter: none; animation: none; }
   .scroll-cue { animation: none; }
+  .hero-bg { animation: none; }
+  .ken-burns { animation: none; }
   .split-words .w { opacity: 1; transform: none; transition: none; }
 }
