@@ -11,6 +11,7 @@ export const es = {
   },
   hero: {
     badge: "", // oculto de momento: decía "Nuevo · IA aplicada a producto"
+    eyebrow: "Estudio de software — Web · Móvil · Sistemas",
     // NBSP (U+00A0) en "se siente" y "se ve.": evita el corte de línea que deja la palabra colgando.
     titleA: "Software que se\u00A0siente",
     titleAccent: "tan bien como se\u00A0ve.",
@@ -18,8 +19,13 @@ export const es = {
     primary: "Iniciar proyecto",
     secondary: "Ver servicios",
     note: "Respuesta en < 24 h · Sin compromiso",
+    scroll: "Deslizá para explorar",
     stats: [{ value: "9", label: "años construyendo software" }],
     techLabel: "Stack con el que trabajamos",
+  },
+  statement: {
+    // Manifiesto tipográfico (ref: monolith-hero). Reutiliza el tagline de marca, sin claims nuevos.
+    lines: ["Diseño minimalista.", "Ingeniería precisa.", "Trato cercano."],
   },
   logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
@@ -31,18 +37,21 @@ export const es = {
         title: "Aplicaciones web",
         desc: "Plataformas rápidas con Astro + React. SEO, i18n y Core Web Vitals en verde desde el día uno.",
         tag: "Web",
+        icon: "web",
         span: "large",
       },
       {
         title: "Apps móviles",
         desc: "Apps multiplataforma con Flutter: una sola base de código y rendimiento de 60 fps.",
         tag: "Móvil",
+        icon: "mobile",
         span: "medium",
       },
       {
         title: "APIs & Cloud",
         desc: "Backends en Go, infra contenerizada y despliegues reproducibles.",
         tag: "Backend",
+        icon: "backend",
         span: "medium",
       },
       // Oculto de momento — reactivar cuando haya un caso real que mostrar:
@@ -56,12 +65,14 @@ export const es = {
         title: "UI / UX",
         desc: "Sistemas de diseño, prototipos y motion con propósito.",
         tag: "Diseño",
+        icon: "design",
         span: "small",
       },
       {
         title: "Soporte & Evolución",
         desc: "Mantenimiento, observabilidad y mejora continua sin drama.",
         tag: "Care",
+        icon: "care",
         span: "small",
       },
     ],

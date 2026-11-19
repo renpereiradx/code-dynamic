@@ -1,0 +1,20 @@
+---
+import type { Dict } from "../i18n/es";
+
+const { dict } = Astro.props as { dict: Dict };
+// Momento tipográfico (ref: motionsites monolith-hero — "EVERY FACADE TELLS ITS STORY").
+// El JS del layout separa cada línea en palabras (.w) y el IO del reveal las enciende en cadena.
+---
+
+<section class="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8 sm:py-36" aria-label={dict.statement.lines.join(" ")}>
+  <div class="flex flex-col items-center text-center">
+    <span class="stmt-rule reveal block h-px w-28" style="background: var(--accent)" aria-hidden="true"></span>
+    <p
+      class="split-words font-display mt-10 text-[clamp(2.2rem,0.9rem+5vw,4.75rem)] font-extrabold leading-[1.05] tracking-[-0.03em]"
+    >
+      {dict.statement.lines.map((line) => (
+        <span class="stmt-line block">{line}</span>
+      ))}
+    </p>
+  </div>
+</section>

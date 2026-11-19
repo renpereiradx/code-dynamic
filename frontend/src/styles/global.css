@@ -78,8 +78,107 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2.75rem, 1rem + 6vw, 5.25rem);
-  line-height: 1.02;
+  font-size: clamp(2.8rem, 1rem + 6.8vw, 6.5rem);
+  line-height: 1;
+}
+
+/* Hero cinematográfico full-height (ref: motionsites monolith-hero) */
+.hero-full {
+  min-height: calc(100svh - 4rem); /* descuenta la nav sticky (h-16) */
+}
+
+/* Grilla de puntos + glow (ref: motionsites crypto-vault). CSS puro, sin assets. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--text) 15%, transparent) 1.05px,
+    transparent 1.05px
+  );
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 92% 78% at 50% 36%, black 0%, transparent 74%);
+  mask-image: radial-gradient(ellipse 92% 78% at 50% 36%, black 0%, transparent 74%);
+  pointer-events: none;
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    640px 400px at 50% 16%,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    transparent 72%
+  );
+}
+
+/* Entrada del hero: una vez, al cargar (stagger por --d) */
+.enter {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: enter-in 0.7s var(--ease-apple) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes enter-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Indicador de scroll de la barra inferior del hero */
+.scroll-cue {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--accent) 55%, transparent);
+  transform-origin: center;
+  animation: cue-pulse 2.4s ease-in-out infinite;
+}
+@keyframes cue-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Statement — momento tipográfico con revelado palabra por palabra (JS separa .w) */
+.split-words .w {
+  display: inline-block;
+  opacity: 0.14;
+  transform: translateY(0.35em);
+  transition:
+    opacity 0.55s var(--ease-apple),
+    transform 0.55s var(--ease-apple);
+  transition-delay: calc(var(--i, 0) * 45ms);
+}
+.split-words.is-visible .w {
+  opacity: 1;
+  transform: none;
+}
+
+.stmt-rule {
+  transform-origin: center;
+}
+/* Scroll-driven: la regla se dibuja con el scroll donde el navegador lo soporta */
+@supports (animation-timeline: view()) {
+  .stmt-rule {
+    animation: rule-draw both ease-out;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
+  }
+  @keyframes rule-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
 }
 
 /* Surfaces */
@@ -170,4 +269,7 @@ body {
   .reveal { opacity: 1; transform: none; transition: none; }
   .marquee-track { animation: none; }
   .scroll-progress { animation: none; }
+  .enter { opacity: 1; transform: none; animation: none; }
+  .scroll-cue { animation: none; }
+  .split-words .w { opacity: 1; transform: none; transition: none; }
 }

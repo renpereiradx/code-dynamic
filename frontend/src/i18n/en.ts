@@ -13,14 +13,21 @@ export const en: Dict = {
   },
   hero: {
     badge: "", // hidden for now: said "New · AI applied to product"
-    titleA: "Software that feels",
-    titleAccent: "as good as it looks.",
+    eyebrow: "Software studio — Web · Mobile · Systems",
+    // NBSP (U+00A0): keeps "that feels" / "it looks." from leaving orphan words at wrap points.
+    titleA: "Software that\u00A0feels",
+    titleAccent: "as good as it\u00A0looks.",
     sub: "Code Dynamic designs and builds web apps, mobile apps and systems. Minimalist design, precise engineering, and friendly service.",
     primary: "Start a project",
     secondary: "See services",
     note: "Reply within < 24 h · No commitment",
+    scroll: "Scroll to explore",
     stats: [{ value: "9", label: "years building software" }],
     techLabel: "The stack we work with",
+  },
+  statement: {
+    // Typographic manifesto (ref: monolith-hero). Reuses the brand tagline, no new claims.
+    lines: ["Minimalist design.", "Precise engineering.", "Friendly service."],
   },
   logos: ["Astro", "React", "TypeScript", "Tailwind", "Flutter", "Node.js", "Go", "PostgreSQL", "Docker", "Tailscale"],
   services: {
@@ -32,18 +39,21 @@ export const en: Dict = {
         title: "Web applications",
         desc: "Fast platforms with Astro + React. SEO, i18n and green Core Web Vitals from day one.",
         tag: "Web",
+        icon: "web",
         span: "large",
       },
       {
         title: "Mobile apps",
         desc: "Cross-platform apps with Flutter: a single codebase at a smooth 60 fps.",
         tag: "Mobile",
+        icon: "mobile",
         span: "medium",
       },
       {
         title: "APIs & Cloud",
         desc: "Go backends, containerized infra and reproducible deploys.",
         tag: "Backend",
+        icon: "backend",
         span: "medium",
       },
       // Hidden for now — re-enable when there is a real case to show:
@@ -57,12 +67,14 @@ export const en: Dict = {
         title: "UI / UX",
         desc: "Design systems, prototypes and motion with purpose.",
         tag: "Design",
+        icon: "design",
         span: "small",
       },
       {
         title: "Support & Growth",
         desc: "Maintenance, observability and continuous improvement, no drama.",
         tag: "Care",
+        icon: "care",
         span: "small",
       },
     ],

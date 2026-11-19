@@ -163,7 +163,29 @@ const base = import.meta.env.BASE_URL ?? "/";
 
     <script is:inline>
       // Reveal on scroll — una vez por elemento, respeta prefers-reduced-motion por CSS.
-      const els = document.querySelectorAll(".reveal");
+      // .split-words: se separa en palabras (.w) y se encadenan con delay por índice.
+      document.querySelectorAll(".split-words").forEach((el) => {
+        if (el.dataset.split === "done") return;
+        const lines = Array.from(el.querySelectorAll(".stmt-line"));
+        el.setAttribute("aria-label", lines.map((l) => l.textContent.trim()).join(" "));
+        let i = 0;
+        for (const line of lines) {
+          line.setAttribute("aria-hidden", "true");
+          const words = line.textContent.trim().split(/\s+/);
+          line.textContent = "";
+          for (const w of words) {
+            const s = document.createElement("span");
+            s.className = "w";
+            s.style.setProperty("--i", String(i++));
+            s.textContent = w;
+            line.appendChild(s);
+            line.appendChild(document.createTextNode(" "));
+          }
+        }
+        el.dataset.split = "done";
+      });
+
+      const els = document.querySelectorAll(".reveal, .split-words");
       if ("IntersectionObserver" in window) {
         const io = new IntersectionObserver(
           (entries) => {
