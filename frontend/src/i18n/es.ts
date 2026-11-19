@@ -11,8 +11,9 @@ export const es = {
   },
   hero: {
     badge: "", // oculto de momento: decía "Nuevo · IA aplicada a producto"
-    titleA: "Software que se siente",
-    titleAccent: "tan bien como se ve.",
+    // NBSP (U+00A0) en "se siente" y "se ve.": evita el corte de línea que deja la palabra colgando.
+    titleA: "Software que se\u00A0siente",
+    titleAccent: "tan bien como se\u00A0ve.",
     sub: "Code Dynamic diseña y construye aplicaciones web, móviles y sistemas. Diseño minimalista, ingeniería precisa y trato cercano.",
     primary: "Iniciar proyecto",
     secondary: "Ver servicios",
@@ -74,7 +75,7 @@ export const es = {
         id: "erp",
         badge: "Producto",
         name: "CDGC · Sistema de Gestión Comercial",
-        desc: "Ventas, inventario multi-sucursal, compras, facturación electrónica SIFEN, caja y reportes. Instalado en el negocio del cliente, con licencia perpetua y sin mensualidad.",
+        desc: "Ventas, inventario multi-sucursal, compras, facturación electrónica SIFEN, caja y reportes. Instalado en el negocio del cliente, con licencia perpetua y sin suscripción.",
         bullets: [
           "POS con código de barras y factura electrónica SIFEN",
           "Inventario, caja y permisos por sucursal",
@@ -141,20 +142,20 @@ export const es = {
   },
   contact: {
     eyebrow: "Contacto",
-    title: "Cuéntanos qué quieres construir.",
-    sub: "Escríbenos a codedynamicdev@gmail.com o deja tu mensaje y te respondemos en menos de 24 h.",
+    title: "Contanos qué querés construir.",
+    sub: "Escribinos a codedynamicdev@gmail.com o dejá tu mensaje y te respondemos en menos de 24 h.",
     email: "codedynamicdev@gmail.com",
     whatsapp: "Escribenos por WhatsApp",
     waMessage: "Hola Code Dynamic, tengo una consulta sobre un proyecto.",
     form: {
       name: "Nombre",
       email: "Email",
-      message: "Cuéntanos del proyecto…",
+      message: "Contanos del proyecto…",
       send: "Enviar mensaje",
       sending: "Enviando…",
       ok: "¡Recibido! Te escribimos en menos de 24 h.",
-      error: "Revisa los campos en rojo: nombre (2+ letras), email válido y mensaje (10+ caracteres).",
-      sendError: "No se pudo enviar. Inténtalo de nuevo o escríbenos directo al email.",
+      error: "Revisá los campos en rojo: nombre (2+ letras), email válido y mensaje (10+ caracteres).",
+      sendError: "No se pudo enviar. Probá de nuevo o escribinos directo al email.",
     },
   },
   footer: {

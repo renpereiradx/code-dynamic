@@ -76,7 +76,7 @@ export const en: Dict = {
         id: "erp",
         badge: "Product",
         name: "CDGC · Commercial Management System",
-        desc: "Sales, multi-branch inventory, purchasing, SIFEN e-invoicing, cash and reports. Installed at the client's business, with a perpetual license and no monthly fee.",
+        desc: "Sales, multi-branch inventory, purchasing, SIFEN e-invoicing, cash and reports. Installed at the client's business, with a perpetual license and no subscription.",
         bullets: [
           "Barcode POS with SIFEN electronic invoicing",
           "Per-branch inventory, cash and permissions",

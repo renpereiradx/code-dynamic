@@ -41,7 +41,7 @@ const servicesHref = `/${lang}/#servicios`;
 
   <dl class="reveal mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-2xl" style="--d: 90ms; background: var(--line); border: 1px solid var(--line); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
     {dict.hero.stats.map((s) => (
-      <div class="px-6 py-5 text-center" style="background: var(--surface)">
+      <div class="flex flex-col px-6 py-5 text-center" style="background: var(--surface)">
         <dt class="order-2 mt-1 block text-[13.5px]" style="color: var(--muted)">{s.label}</dt>
         <dd class="font-display order-1 text-[26px] font-bold">{s.value}</dd>
       </div>
