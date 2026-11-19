@@ -151,7 +151,7 @@ export const Fiscal: React.FC = () => {
         );
       })}
       <div style={{marginTop: 16, fontSize: vertical ? 22 : 26, color: theme.muted, lineHeight: 1.4}}>
-        Libros de IVA compras y ventas, listos para tu contador.
+        Con BI Premium: libros de IVA compras y ventas para tu contador.
       </div>
     </>
   );

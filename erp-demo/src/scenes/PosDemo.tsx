@@ -87,7 +87,7 @@ export const PosDemo: React.FC = () => {
             }}
           >
             El ticket sale impreso y el saldo queda en la cuenta del cliente.
-            El inventario de todas tus sucursales, siempre bajo control.
+            El inventario de tus sucursales, siempre bajo control.
           </p>
           <div style={{display: 'flex', flexWrap: 'wrap', gap: vertical ? 12 : 16, marginTop: vertical ? 22 : 36}}>
             {['Efectivo', 'Tarjeta', 'Cta. cte.'].map((m, i) => {

@@ -21,7 +21,7 @@ const CARDS = [
   },
   {
     mono: 'red local',
-    title: 'Sin internet',
+    title: 'En tu red local',
     desc: 'Vendés y controlás stock en tu red.\nSolo la factura viaja a SIFEN.',
     accent: theme.warn,
   },
