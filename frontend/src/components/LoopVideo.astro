@@ -1,0 +1,43 @@
+---
+/**
+ * Decorative looping video with a poster fallback.
+ *
+ * - No `autoplay`: Layout.astro plays it only when it is in view, when the user
+ *   has not asked for reduced motion, and (for the hero) on wide screens. Until
+ *   then the poster is what is shown, so JS-off and reduced-motion are safe.
+ * - WebM/VP9 first, H.264/MP4 second; the browser picks the first it can play.
+ * - Always muted + loop + playsinline and hidden from assistive tech: the
+ *   surrounding copy is the accessible description.
+ */
+interface Props {
+  name: string;
+  poster: string;
+  class?: string;
+  /** "poster" keeps the static poster on small screens (used by the hero). */
+  mobile?: "play" | "poster";
+  /** The hero hides its video in the light theme; don't download it either. */
+  hideLight?: boolean;
+}
+
+const { name, poster, class: className, mobile = "play", hideLight = false } = Astro.props;
+const base = import.meta.env.BASE_URL ?? "/";
+const media = `${base}media`;
+---
+
+<video
+  class:list={["loop-video", className]}
+  data-loop-video
+  data-mobile={mobile}
+  data-hide-light={hideLight ? "true" : undefined}
+  poster={`${media}/${poster}`}
+  muted
+  loop
+  playsinline
+  preload="none"
+  aria-hidden="true"
+  tabindex="-1"
+  disablepictureinpicture
+>
+  <source src={`${media}/${name}.webm`} type="video/webm" />
+  <source src={`${media}/${name}.mp4`} type="video/mp4" />
+</video>

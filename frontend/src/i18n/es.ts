@@ -95,7 +95,7 @@ export const es = {
         chips: ["POS", "SIFEN", "Multi-sucursal", "BI"],
         cta: "Conocer el producto",
         demo: "Ver demo de 1 minuto",
-        windowTitle: "Ventas · Terminal 1 — Sucursal Centro",
+        windowTitle: "Ventas · Caja 2 — Sucursal Centro",
         totalLabel: "Total",
         payLabel: "Cobrar",
       },

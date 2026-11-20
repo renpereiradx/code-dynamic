@@ -97,7 +97,7 @@ export const en: Dict = {
         chips: ["POS", "SIFEN", "Multi-branch", "BI"],
         cta: "Explore the product",
         demo: "Watch 1-min demo",
-        windowTitle: "Sales · Terminal 1 — Branch Downtown",
+        windowTitle: "Sales · Register 2 — Branch Downtown",
         totalLabel: "Total",
         payLabel: "Charge",
       },

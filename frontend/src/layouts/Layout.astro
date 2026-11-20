@@ -57,6 +57,30 @@ const base = import.meta.env.BASE_URL ?? "/";
         document.documentElement.dataset.theme = "dark";
       }
     </script>
+    <noscript>
+      <style>
+        /* Sin JS no hay IntersectionObserver que encienda los .reveal. */
+        .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+        /* Sin JS no hay autoplay: el poster ocupa el lugar del video (y evita
+           los controles nativos que el navegador agrega a un video sin play). */
+        .loop-video { display: none !important; }
+        .hero-bg::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: var(--hero-poster) center / cover no-repeat;
+          opacity: 0.44;
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 92%, transparent 100%);
+        }
+        [data-theme="light"] .hero-bg::before { display: none; }
+        .product-media-wrap {
+          background-image: var(--poster) !important;
+          background-size: cover !important;
+          background-position: center !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div
@@ -220,6 +244,66 @@ const base = import.meta.env.BASE_URL ?? "/";
       } else {
         els.forEach((el) => el.classList.add("is-visible"));
       }
+
+      // Loop videos (hero + productos): se cargan/reproducen solo en viewport,
+      // nunca con prefers-reduced-motion, y en pantallas angostas el hero queda
+      // en poster. Sin JS no hay autoplay: el poster es el fallback.
+      (() => {
+        const vids = Array.from(document.querySelectorAll("video[data-loop-video]"));
+        if (!vids.length) return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const narrow = window.matchMedia("(max-width: 767px)");
+        const visible = new WeakSet();
+        const light = () => document.documentElement.dataset.theme === "light";
+        const canPlay = (v) =>
+          !reduce.matches &&
+          !(v.dataset.mobile === "poster" && narrow.matches) &&
+          !(v.dataset.hideLight === "true" && light());
+        const start = (v) => {
+          if (!canPlay(v)) {
+            v.pause();
+            return;
+          }
+          if (!v.dataset.started) {
+            v.dataset.started = "1";
+            v.load();
+          }
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        };
+        const io =
+          "IntersectionObserver" in window
+            ? new IntersectionObserver(
+                (entries) => {
+                  for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                      visible.add(entry.target);
+                      start(entry.target);
+                    } else {
+                      visible.delete(entry.target);
+                      entry.target.pause();
+                    }
+                  }
+                },
+                { threshold: 0.08 }
+              )
+            : null;
+        vids.forEach((v) => (io ? io.observe(v) : start(v)));
+        const onPref = () =>
+          vids.forEach((v) => (visible.has(v) ? start(v) : v.pause()));
+        if (reduce.addEventListener) reduce.addEventListener("change", onPref);
+        if (narrow.addEventListener) narrow.addEventListener("change", onPref);
+        if ("MutationObserver" in window) {
+          new MutationObserver(onPref).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["data-theme"],
+          });
+        }
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) vids.forEach((v) => v.pause());
+          else vids.forEach((v) => { if (visible.has(v)) start(v); });
+        });
+      })();
     </script>
   </body>
 </html>
